@@ -10,20 +10,20 @@ networks:
             config:
                 - subnet: 172.21.1.0/24
 services:
-    dbox.node:
+    dbox.api:
         user:  "1000:1000"
-        build: node
-        container_name: 'dbox.node'
+        build: api
+        container_name: 'dbox.api'
         ports:
           - 3000:3000
           - 4000:4000
           - 4431:443
         volumes:
-            - ../node/:/var/www/vhosts/dbox/
+            - ../api/:/var/www/vhosts/dbox/
         extra_hosts:
           - 'mariadb:172.21.1.12'
           - 'rabbitmq:172.21.1.13'
-        hostname: dbox.node
+        hostname: dbox.api
         networks:
             dbox-network:
                 ipv4_address: 172.21.1.14
