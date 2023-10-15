@@ -3,11 +3,10 @@ import { MainApp } from "./MainApp";
 try {
   new MainApp().start();
 } catch (e) {
-  console.log(e);
   process.exit(1);
 }
 
-process.on('uncaughtException', err => {
-  console.log('uncaughtException', err);
+process.on("uncaughtException", (err) => {
+  console.log("::: UPS ::: uncaught exception throwed", err);
   process.exit(1);
 });
