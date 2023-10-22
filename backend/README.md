@@ -37,21 +37,13 @@ Siempre usamos -E para fijar version ya sea en dev o no
 ESTRUCTURA DE MODULO
 ====================
 
-Contexto/Modulo
+Context/Shop/Order
+Context/Shop/Product
+Context/Shop/Invoice
 
-Shop/Order/Application/
-Order/Application/OrderCreate/
-Order/Application/OrderCreate/OrderCreateRequest
-Order/Application/OrderCreate/OrderCreateResponse
-Order/Application/OrderCreate/OrderCreateService
-Order/Domain/
-Order/Domain/ValueObject
-Order/Domain/Model
-Order/Domain/Persistence
-Order/Domain/Exception
-Order/Infrastructure/
-Order/Infrastructure/Persistence
-Order/Infrastructure/UI|||Api|||Actions [Controllers/Endpoints/MainClass]
+Context/Shop/Order/Application/
+Context/Shop/Order/Domain/
+Context/Shop/Order/Infrastructure/
 
 Tag[Title]
 Project[Title,Description,Avatar,Tags]
