@@ -37,19 +37,9 @@ Siempre usamos -E para fijar version ya sea en dev o no
 ESTRUCTURA DE MODULO
 ====================
 
-option 1
-.........
-Order
-Product
-.........
+Contexto/Modulo
 
-option 2
-.........
-Shop/Order
-Shop/Product
-.........
-
-Order/Application/
+Shop/Order/Application/
 Order/Application/OrderCreate/
 Order/Application/OrderCreate/OrderCreateRequest
 Order/Application/OrderCreate/OrderCreateResponse

@@ -1,19 +1,19 @@
-import { Server } from "./server";
+import { Server } from './server';
 
 export class MainApp {
-  server?: Server;
+    server?: Server;
 
-  async start() {
-    const port = process.env.PORT || "3000";
-    this.server = new Server(port);
-    return this.server.listen();
-  }
+    async start() {
+        const port = process.env.PORT || '3000';
+        this.server = new Server(port);
+        return this.server.listen();
+    }
 
-  get httpServer() {
-    return this.server?.getHTTPServer();
-  }
+    get httpServer() {
+        return this.server?.getHTTPServer();
+    }
 
-  async stop() {
-    return this.server?.stop();
-  }
+    async stop() {
+        return this.server?.stop();
+    }
 }

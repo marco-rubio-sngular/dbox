@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import HttpStatus from "http-status";
-import { ApiAction } from "../../../../Modules/Shared/Domain/Action/ApiAction";
+import { Request, Response } from 'express';
+import HttpStatus from 'http-status';
+import { ApiAction } from '../../../../Context/Shared/Domain/Action/ApiAction';
 
 export class PingAction implements ApiAction {
-  async execute(_req: Request, res: Response): Promise<void> {
-    res
-      .status(HttpStatus.OK)
-      .send("[Health.Action.Ping] ~ pong at " + new Date());
-  }
+    async execute(_req: Request, res: Response): Promise<void> {
+        res.status(HttpStatus.OK).send(
+            '[Health.Action.Ping] ~ pong at ' + new Date()
+        );
+    }
 }

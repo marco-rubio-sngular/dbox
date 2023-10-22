@@ -6,3 +6,7 @@ apish:
 	bash docker/bin/apish.sh
 test:
 	bash docker/bin/testsh.sh
+format:
+	bash docker/bin/format.sh
+lint:
+	bash docker/bin/lint.sh
