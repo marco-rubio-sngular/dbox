@@ -1,8 +1,11 @@
 export abstract class LimitedString {
+  public static MINIMUM_STANDARD_STRING: number = 5;
+  public static MAXIMUM_STANDARD_STRING: number = 50;
+
   constructor(
     public readonly value: string,
-    public readonly minimum: number,
-    public readonly maximum: number
+    public readonly minimum: number = LimitedString.MINIMUM_STANDARD_STRING,
+    public readonly maximum: number = LimitedString.MAXIMUM_STANDARD_STRING
   ) {
     this.validateOrThrowException(value);
   }
