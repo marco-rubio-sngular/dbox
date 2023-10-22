@@ -1,1 +1,3 @@
-export abstract class DomainException extends Error {}
+abstract class DomainException extends Error {}
+
+export default DomainException;

@@ -7,16 +7,19 @@ export abstract class LimitedString {
         public readonly minimum: number = LimitedString.MINIMUM_STANDARD_STRING,
         public readonly maximum: number = LimitedString.MAXIMUM_STANDARD_STRING
     ) {
-        this.validateOrThrowException(value);
+        this.validateOrThrowException();
     }
 
-    private validateOrThrowException(value: string): void {
-        if (value.length >= this.minimum && value.length <= this.maximum) {
+    private validateOrThrowException(): void {
+        if (
+            this.value.length >= this.minimum &&
+            this.value.length <= this.maximum
+        ) {
             return;
         }
 
-        this.throwException(value);
+        this.throwException();
     }
 
-    protected abstract throwException(value: string): void;
+    protected abstract throwException(): void;
 }
