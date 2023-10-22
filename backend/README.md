@@ -18,6 +18,14 @@ GESTION RELACIONES
   y relacionamos por el campo de identificacion que tenga el recurso
 
 ====================
+GESTION ACOPLAMIENTO
+====================
+
+- Podemos empezar usando codigo de otros modulos pero siempre a traves
+  de un unico punto que sea quien exponga el comportamiento de su modulo
+  que desee, en capa de aplicacion podemos absorverlo sin problema
+
+====================
 GESTION DEPENDENCIAS
 ====================
 
