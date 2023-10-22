@@ -1,12 +1,12 @@
-import { json, urlencoded } from 'body-parser';
-import compress from 'compression';
-import errorHandler from 'errorhandler';
-import express, { Request, Response } from 'express';
-import Router from 'express-promise-router';
-import helmet from 'helmet';
-import * as http from 'http';
-import httpStatus from 'http-status';
-import RouteRegistrator from './Route/RouteRegistrator';
+import { json, urlencoded } from "body-parser";
+import compress from "compression";
+import errorHandler from "errorhandler";
+import express, { Request, Response } from "express";
+import Router from "express-promise-router";
+import helmet from "helmet";
+import * as http from "http";
+import httpStatus from "http-status";
+import RouteRegistrator from "./Route/RouteRegistrator";
 
 export class Server {
   private express: express.Express;
@@ -21,7 +21,7 @@ export class Server {
     this.express.use(helmet.xssFilter());
     this.express.use(helmet.noSniff());
     this.express.use(helmet.hidePoweredBy());
-    this.express.use(helmet.frameguard({ action: 'deny' }));
+    this.express.use(helmet.frameguard({ action: "deny" }));
     this.express.use(compress());
     const router = Router();
     router.use(errorHandler());
@@ -36,12 +36,14 @@ export class Server {
   }
 
   async listen(): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.httpServer = this.express.listen(this.port, () => {
         console.log(
-          `  '{.".} > api server started at http://localhost:${this.port} in ${this.express.get('env')} mode`
+          `  '{.".} > api server started at http://localhost:${
+            this.port
+          } in ${this.express.get("env")} mode`
         );
-        console.log('  Press CTRL-C to stop\n');
+        console.log("  Press CTRL-C to stop\n");
         resolve();
       });
     });
@@ -54,7 +56,7 @@ export class Server {
   async stop(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.httpServer) {
-        this.httpServer.close(error => {
+        this.httpServer.close((error) => {
           if (error) {
             return reject(error);
           }

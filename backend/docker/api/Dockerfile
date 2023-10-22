@@ -44,4 +44,5 @@ WORKDIR /var/www/vhosts/dbox
 RUN echo 'alias maria="mysql -h mariadb -u dbox -pdbox dbox"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/dbox/node_modules/.bin' >> /etc/bash.bashrc
 
+
 CMD npm install && npm run dev

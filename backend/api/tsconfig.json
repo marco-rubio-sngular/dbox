@@ -11,10 +11,10 @@
     "noEmit": false,
     "resolveJsonModule": true,
     "noUnusedLocals": true,
-    "outDir": "./components/dist"
+    "outDir": "./dist"
   },
   "include": [
-    "./components/src/**/**.ts"
+    "src/**/**.ts"
   ],
   "exclude": ["node_modules"]
 }

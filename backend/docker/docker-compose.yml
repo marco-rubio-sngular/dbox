@@ -22,7 +22,6 @@ services:
             - ../api/:/var/www/vhosts/dbox/
         extra_hosts:
           - 'mariadb:172.21.1.12'
-          - 'rabbitmq:172.21.1.13'
         hostname: dbox.api
         networks:
             dbox-network:

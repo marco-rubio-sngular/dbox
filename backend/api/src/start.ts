@@ -1,4 +1,4 @@
-import { MainApp } from "./MainApp";
+import { MainApp } from "./Infrastructure/MainApp";
 
 try {
   new MainApp().start();

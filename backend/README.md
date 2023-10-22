@@ -1,87 +1,59 @@
-**MARCAS DE REEMPLAZOS**
+=============================
+ESTILO DE CODIGO Y ESTRUCTURA
+=============================
 
-**_DATABASE_USER_** => usuario base de datos
-**_DATABASE_PASS_** => password base de datos
-**_DATABASE_NAME_** => nombre base de datos
-**_DOCUMENT_ROOT_** => directorio document_root / var/www/vhosts/DOCUMENT_ROOT
-dbox => prefijo para los nombres de los contenedores
-**_COMPONENTS_BASEDIR_** => directorio desde root donde estan los componentes y sirve como nombre base
+- Los nombres de directorios y todos los ficheros que sean
+  de nuestro codigo seran en singular
+- Los directorios y ficheros que sean de nuestro codigo iran
+  con Pascal Case que es la primera letra de cada palabra en mayuscula
+- Para el format del codigo, yaml, json, etc se definiran un
+  prettirrc y los correspondientes vendors/configuraciones y se aplicara
+  por igual en todos los participantes del proyecto
 
-** Puesta en marcha **
+==================
+GESTION RELACIONES
+==================
 
-1. reemplazar todas las marcas y las ips de docker-compose.yml
-2. make start
-3. make apish
-4. bash /tmp/firstboot.sh
+- FKLess :) Gestion individual con validacion de parentesco
+  y relacionamos por el campo de identificacion que tenga el recurso
 
-** Include make commands **
-make start
-make stop
-make tests
-make apish
-make phpstan
+====================
+GESTION DEPENDENCIAS
+====================
 
-** Resources **
+- npm install -E
 
-docker/resources/phpunit.xml.dist
+Siempre usamos -E para fijar version ya sea en dev o no
 
-Este fichero lo usaremos en los contenedores que necesites
-phpunit y debemos modificar las lineas de las rutas
+====================
+ESTRUCTURA DE MODULO
+====================
 
-linea 16
+option 1
+.........
+Order
+Product
+.........
 
-<directory>contexts/XXXXXX</directory>
+option 2
+.........
+Shop/Order
+Shop/Product
+.........
 
-la ruta es desde el directorio raiz del proyecto,
-ahi es donde copiamos este fichero.
+Order/Application/
+Order/Application/OrderCreate/
+Order/Application/OrderCreate/OrderCreateRequest
+Order/Application/OrderCreate/OrderCreateResponse
+Order/Application/OrderCreate/OrderCreateService
+Order/Domain/
+Order/Domain/ValueObject
+Order/Domain/Model
+Order/Domain/Persistence
+Order/Domain/Exception
+Order/Infrastructure/
+Order/Infrastructure/Persistence
+Order/Infrastructure/UI|||Api|||Actions [Controllers/Endpoints/MainClass]
 
-docker/resources/composer.json
-
-Este fichero lo usaremos para incluir en las secciones
-de require y require-dev el fuente de nuestros componentes
-asi como la ruta a los test.
-
-Las rutas las definimos junto a sus namespaces
-
-"autoload": {
-"psr-4": {
-"App\\": "src/",
-...
-...
-"ROOTNSDIR\\AAAAA\\BBBBB\\": "ROOTNSDIR/AAAAA/BBBBB/src/",
-...
-...
-}
-},
-"autoload-dev": {
-"psr-4": {
-"App\\Tests\\": "tests/",
-...
-...
-"ROOTNSDIR\\AAAAA\\BBBBB\\Test\\": "ROOTNSDIR/AAAAA/BBBBB/test/",
-...
-...
-}
-},
-
-Con estos datos debemos poner en la raiz del proyecto los siguientes
-directorios
-
-ROOTNSDIR/AAAAA/BBBBB/src
-ROOTNSDIR/AAAAA/BBBBB/test
-
-y los namespace tanto del fuente como del test seria
-
-namespace ROOTNSDIR\AAAAA\BBBBB\Domain
-
-para una clase localizada en
-
-ROOTNSDIR/AAAAA/BBBBB/src/Domain
-
-y el namespace
-
-namespace ROOTNSDIR\AAAAA\BBBBB\Test\Unit\Domain
-
-seria para una clase localizada en
-
-ROOTNSDIR/AAAAA/BBBBB/test/Unit/Domain
+Tag[Title]
+Project[Title,Description,Avatar,Tags]
