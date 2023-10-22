@@ -1,10 +1,43 @@
 import { Request, Response, Router } from 'express';
-import { ApiAction } from '../../Context/Shared/Domain/Action/ApiAction';
-import { PingAction } from '../Health/Action/Ping/PingAction';
 
 export const register = (router: Router) => {
-    const feature: ApiAction = new PingAction();
     router.get('/health/ping', (req: Request, res: Response) =>
-        feature.execute(req, res)
+        
+        const request:RegisterRequest = new RegisterRequest(
+            req.body.email,
+            req.body.password
+        );
+        const service:RegisterService = new RegisterService(request);
+
+
+
+
+        Registro => Comando
+        Login => Query SIEMPRE TIENEN RESPUESTA
+        UpdateUser => Comando
+        List => Query
+        Search => Query
+
+
+
+            CAMBIO DE ESTADO
+
+
+            QUERYS QUERYS
+
+
+
+
+
+
+
+
+
+
+        const response:RegisterResponse = service.execute();
+
+        res.json(201);
+
+
     );
 };

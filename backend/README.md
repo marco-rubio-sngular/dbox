@@ -37,13 +37,5 @@ Siempre usamos -E para fijar version ya sea en dev o no
 ESTRUCTURA DE MODULO
 ====================
 
-Context/Shop/Order
-Context/Shop/Product
-Context/Shop/Invoice
-
-Context/Shop/Order/Application/
-Context/Shop/Order/Domain/
-Context/Shop/Order/Infrastructure/
-
-Tag[Title]
-Project[Title,Description,Avatar,Tags]
+Context/User
+Context/Access/User
