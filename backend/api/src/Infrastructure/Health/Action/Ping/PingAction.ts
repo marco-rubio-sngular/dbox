@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import HttpStatus from "http-status";
-import { ApiAction } from "../../../../Modules/Shared/Domain/Contrat/ApiAction";
+import { ApiAction } from "../../../../Modules/Shared/Domain/Action/ApiAction";
 
 export class PingAction implements ApiAction {
   async execute(_req: Request, res: Response): Promise<void> {

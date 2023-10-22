@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { ApiAction } from "../../Modules/Shared/Domain/Contrat/ApiAction";
+import { ApiAction } from "../../Modules/Shared/Domain/Action/ApiAction";
 import { PingAction } from "../Health/Action/Ping/PingAction";
 
 export const register = (router: Router) => {
