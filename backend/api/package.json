@@ -29,6 +29,7 @@
     "@types/jest": "29.2.4",
     "@types/node": "18.11.16",
     "@types/supertest": "2.0.12",
+    "@typescript-eslint/eslint-plugin": "6.8.0",
     "cucumber-pretty": "6.0.1",
     "eslint": "8.52.0",
     "eslint-config-prettier": "9.0.0",

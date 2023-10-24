@@ -1,10 +1,10 @@
 import BadRequestException from '../../../../Shared/Domain/Exception/BadRequestException';
 
-class FaqSolution {
+class Solution {
     public static MINIMUM_LENGTH: number = 10;
 
     constructor(public readonly value: string) {
-        if (value.trim().length >= FaqSolution.MINIMUM_LENGTH) {
+        if (value.trim().length >= Solution.MINIMUM_LENGTH) {
             return;
         }
 
@@ -16,4 +16,4 @@ class FaqSolution {
     }
 }
 
-export default FaqSolution;
+export default Solution;
