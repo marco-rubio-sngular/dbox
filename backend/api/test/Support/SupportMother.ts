@@ -31,7 +31,7 @@ class SupportMother {
     }
 
     public static FaqToCreate(): Faq {
-        return Faq.toCreate(
+        return Faq.create(
             SupportMother.Id(),
             SupportMother.Title(),
             SupportMother.Solution()
@@ -39,7 +39,7 @@ class SupportMother {
     }
 
     public static FaqToRead(): Faq {
-        return Faq.toRead(
+        return Faq.create(
             SupportMother.Id(),
             SupportMother.Title(),
             SupportMother.Solution(),

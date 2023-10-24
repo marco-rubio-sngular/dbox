@@ -10,17 +10,18 @@ class Faq {
         public readonly createdAt: Date
     ) {}
 
-    public static toCreate(id: Id, title: Title, solution: Solution): Faq {
-        return new Faq(id, title, solution, new Date());
-    }
-
-    public static toRead(
+    public static create(
         id: Id,
         title: Title,
         solution: Solution,
-        createdAt: Date
+        createdAt?: Date
     ): Faq {
-        return new Faq(id, title, solution, createdAt);
+        let created: Date = new Date();
+        if (createdAt !== undefined) {
+            created = createdAt;
+        }
+
+        return new Faq(id, title, solution, created);
     }
 }
 

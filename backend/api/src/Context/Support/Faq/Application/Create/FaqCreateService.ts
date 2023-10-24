@@ -8,7 +8,7 @@ class FaqCreateService {
     constructor(private readonly repository: FaqRepository) {}
 
     execute(request: FaqCreateRequest): void {
-        const faq: Faq = Faq.toCreate(
+        const faq: Faq = Faq.create(
             new Id(request.id),
             new Title(request.title),
             new Solution(request.solution)
