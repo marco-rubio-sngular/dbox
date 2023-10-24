@@ -1,15 +1,23 @@
-import { Id } from '../../src/Context/Shared/Domain/ValueObject/Id';
+import Id from '../../src/Context/Shared/Domain/ValueObject/Id';
 import Title from '../../src/Context/Shared/Domain/ValueObject/Title';
 import FaqCreateRequest from '../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
 import FaqCreateResponse from '../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
+import FaqCreateService from '../../src/Context/Support/Faq/Application/Create/FaqCreateService';
 import Faq from '../../src/Context/Support/Faq/Domain/Model/Faq';
 import Solution from '../../src/Context/Support/Faq/Domain/ValueObject/Solution';
+import FaqRepository from './Faq/Domain/Persistence/FaqRepository';
 
 class SupportMother {
     public static FAQ_TITLE: string = 'a'.repeat(Title.MINIMUM_STANDARD_STRING);
     public static FAQ_SOLUTION: string = 'a'.repeat(Solution.MINIMUM_LENGTH);
     public static FAQ_CREATED_AT: Date = new Date();
     public static FAQ_ID: string = '5322fbf7-fe25-45d1-82a1-3c62fcc0ffb1';
+
+    public static FaqCreateService(
+        repository: FaqRepository
+    ): FaqCreateService {
+        return new FaqCreateService(repository);
+    }
 
     public static FaqCreateResponse(): FaqCreateResponse {
         return new FaqCreateResponse(SupportMother.FAQ_ID);

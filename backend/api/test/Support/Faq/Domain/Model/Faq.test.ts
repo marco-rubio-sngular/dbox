@@ -1,4 +1,4 @@
-import { Id } from '../../../../../src/Context/Shared/Domain/ValueObject/Id';
+import Id from '../../../../../src/Context/Shared/Domain/ValueObject/Id';
 import Title from '../../../../../src/Context/Shared/Domain/ValueObject/Title';
 import Faq from '../../../../../src/Context/Support/Faq/Domain/Model/Faq';
 import Solution from '../../../../../src/Context/Support/Faq/Domain/ValueObject/Solution';

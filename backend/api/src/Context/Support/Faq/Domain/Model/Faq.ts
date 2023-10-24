@@ -1,4 +1,4 @@
-import { Id } from '../../../../Shared/Domain/ValueObject/Id';
+import Id from '../../../../Shared/Domain/ValueObject/Id';
 import Title from '../../../../Shared/Domain/ValueObject/Title';
 import Solution from '../ValueObject/Solution';
 

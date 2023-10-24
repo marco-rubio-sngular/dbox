@@ -1,4 +1,4 @@
-import { Id } from '../../../../src/Context/Shared/Domain/ValueObject/Id';
+import Id from '../../../../src/Context/Shared/Domain/ValueObject/Id';
 import { SharedMother } from '../../SharedMother';
 
 describe('Id', () => {

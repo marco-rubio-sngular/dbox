@@ -1,6 +1,6 @@
 import BadRequestException from '../Exception/BadRequestException';
 
-export class Id {
+class Id {
     constructor(public readonly value: string) {
         this.validateOrThrowException();
     }
@@ -25,3 +25,5 @@ export class Id {
         throw new BadRequestException('invalid id ' + this.value);
     }
 }
+
+export default Id;

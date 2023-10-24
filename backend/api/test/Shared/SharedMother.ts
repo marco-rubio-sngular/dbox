@@ -1,7 +1,7 @@
 import BadRequestException from '../../src/Context/Shared/Domain/Exception/BadRequestException';
 import InternalException from '../../src/Context/Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../src/Context/Shared/Domain/Exception/NotFoundException';
-import { Id } from '../../src/Context/Shared/Domain/ValueObject/Id';
+import Id from '../../src/Context/Shared/Domain/ValueObject/Id';
 import { LimitedString } from '../../src/Context/Shared/Domain/ValueObject/LimitedString';
 import Title from '../../src/Context/Shared/Domain/ValueObject/Title';
 
@@ -32,7 +32,6 @@ export class SharedMother {
             value !== undefined ? value : SharedMother.TITLE_VALUE
         );
     }
-
     public static BadRequestException(): BadRequestException {
         return new BadRequestException();
     }
