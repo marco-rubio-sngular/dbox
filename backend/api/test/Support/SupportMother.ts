@@ -38,10 +38,10 @@ class SupportMother {
         );
     }
 
-    public static FaqToRead(): Faq {
+    public static FaqToRead(title?: string): Faq {
         return Faq.create(
             SupportMother.Id(),
-            SupportMother.Title(),
+            SupportMother.Title(title),
             SupportMother.Solution(),
             SupportMother.FAQ_CREATED_AT
         );

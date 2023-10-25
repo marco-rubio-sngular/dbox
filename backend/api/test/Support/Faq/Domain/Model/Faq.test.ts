@@ -1,3 +1,4 @@
+import BadRequestException from '../../../../../src/Context/Shared/Domain/Exception/BadRequestException';
 import Id from '../../../../../src/Context/Shared/Domain/ValueObject/Id';
 import Title from '../../../../../src/Context/Shared/Domain/ValueObject/Title';
 import Faq from '../../../../../src/Context/Support/Faq/Domain/Model/Faq';
@@ -26,5 +27,13 @@ describe('Faq model', () => {
         expect(sut.solution.value).toStrictEqual(SupportMother.FAQ_SOLUTION);
         expect(sut.createdAt).toStrictEqual(SupportMother.FAQ_CREATED_AT);
         expect(sut.id.value).toStrictEqual(SupportMother.FAQ_ID);
+    });
+
+    it('should throw a bad request exception on invalid title', () => {
+        expect(() => {
+            SupportMother.FaqToRead(
+                'a'.repeat(Title.MINIMUM_STANDARD_STRING - 1)
+            );
+        }).toThrow(BadRequestException);
     });
 });
