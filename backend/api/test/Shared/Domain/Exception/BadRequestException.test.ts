@@ -2,22 +2,14 @@ import BadRequestException from '../../../../src/Context/Shared/Domain/Exception
 import DomainException from '../../../../src/Context/Shared/Domain/Exception/DomainException';
 import { SharedMother } from '../../SharedMother';
 
+const sut: BadRequestException = SharedMother.BadRequestException();
+
 describe('BadRequestException', () => {
-    let sut: BadRequestException | null = null;
-
-    beforeEach(() => {
-        sut = SharedMother.BadRequestException();
-    });
-    afterEach(() => {
-        sut = null;
-    });
-
     it('should be an Error', () => {
         expect(sut).toBeInstanceOf(Error);
     });
 
     it('should be a DomainException', () => {
-        expect(sut).toBeInstanceOf(Error);
         expect(sut).toBeInstanceOf(DomainException);
     });
 });

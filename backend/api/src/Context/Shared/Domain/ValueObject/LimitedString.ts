@@ -1,11 +1,13 @@
-export abstract class LimitedString {
-    public static MINIMUM_STANDARD_STRING: number = 5;
-    public static MAXIMUM_STANDARD_STRING: number = 50;
+import BadRequestException from '../Exception/BadRequestException';
+
+class LimitedString {
+    public static MINIMUM_LENGTH: number = 5;
+    public static MAXIMUM_LENGTH: number = 50;
 
     constructor(
         public readonly value: string,
-        public readonly minimum: number = LimitedString.MINIMUM_STANDARD_STRING,
-        public readonly maximum: number = LimitedString.MAXIMUM_STANDARD_STRING
+        public readonly minimum: number = LimitedString.MINIMUM_LENGTH,
+        public readonly maximum: number = LimitedString.MAXIMUM_LENGTH
     ) {
         this.validateOrThrowException();
     }
@@ -21,5 +23,11 @@ export abstract class LimitedString {
         this.throwException();
     }
 
-    protected abstract throwException(): void;
+    protected throwException(): void {
+        throw new BadRequestException(
+            `value must be between ${LimitedString.MINIMUM_LENGTH} and ${LimitedString.MAXIMUM_LENGTH} chars length, your value its not valid: ${this.value}`
+        );
+    }
 }
+
+export default LimitedString;

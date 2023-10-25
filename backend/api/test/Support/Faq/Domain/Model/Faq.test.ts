@@ -32,7 +32,28 @@ describe('Faq model', () => {
     it('should throw a bad request exception on invalid title', () => {
         expect(() => {
             SupportMother.FaqToRead(
-                'a'.repeat(Title.MINIMUM_STANDARD_STRING - 1)
+                undefined,
+                'a'.repeat(Title.MINIMUM_LENGTH - 1)
+            );
+        }).toThrow(BadRequestException);
+    });
+
+    it('should throw a bad request exception on invalid solution', () => {
+        expect(() => {
+            SupportMother.FaqToRead(
+                undefined,
+                undefined,
+                'a'.repeat(Solution.MINIMUM_LENGTH - 1)
+            );
+        }).toThrow(BadRequestException);
+    });
+
+    it('should throw a bad request exception on invalid id', () => {
+        expect(() => {
+            SupportMother.FaqToRead(
+                'non-valid-id',
+                'a'.repeat(Title.MINIMUM_LENGTH - 1),
+                'a'.repeat(Solution.MINIMUM_LENGTH - 1)
             );
         }).toThrow(BadRequestException);
     });

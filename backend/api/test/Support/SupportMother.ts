@@ -4,11 +4,11 @@ import FaqCreateRequest from '../../src/Context/Support/Faq/Application/Create/F
 import FaqCreateResponse from '../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
 import FaqCreateService from '../../src/Context/Support/Faq/Application/Create/FaqCreateService';
 import Faq from '../../src/Context/Support/Faq/Domain/Model/Faq';
+import FaqRepository from '../../src/Context/Support/Faq/Domain/Persistence/FaqRepository';
 import Solution from '../../src/Context/Support/Faq/Domain/ValueObject/Solution';
-import FaqRepository from './Faq/Domain/Persistence/FaqRepository';
 
 class SupportMother {
-    public static FAQ_TITLE: string = 'a'.repeat(Title.MINIMUM_STANDARD_STRING);
+    public static FAQ_TITLE: string = 'a'.repeat(Title.MINIMUM_LENGTH);
     public static FAQ_SOLUTION: string = 'a'.repeat(Solution.MINIMUM_LENGTH);
     public static FAQ_CREATED_AT: Date = new Date();
     public static FAQ_ID: string = '5322fbf7-fe25-45d1-82a1-3c62fcc0ffb1';
@@ -38,11 +38,15 @@ class SupportMother {
         );
     }
 
-    public static FaqToRead(title?: string): Faq {
+    public static FaqToRead(
+        id?: string,
+        title?: string,
+        solution?: string
+    ): Faq {
         return Faq.create(
-            SupportMother.Id(),
+            SupportMother.Id(id),
             SupportMother.Title(title),
-            SupportMother.Solution(),
+            SupportMother.Solution(solution),
             SupportMother.FAQ_CREATED_AT
         );
     }

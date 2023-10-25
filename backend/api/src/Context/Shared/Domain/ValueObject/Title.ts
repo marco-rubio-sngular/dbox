@@ -1,5 +1,5 @@
 import BadRequestException from '../Exception/BadRequestException';
-import { LimitedString } from './LimitedString';
+import LimitedString from './LimitedString';
 
 class Title extends LimitedString {
     constructor(value: string) {
