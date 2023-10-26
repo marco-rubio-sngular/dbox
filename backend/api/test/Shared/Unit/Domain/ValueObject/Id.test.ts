@@ -1,5 +1,5 @@
-import Id from '../../../../src/Context/Shared/Domain/ValueObject/Id';
-import { SharedMother } from '../../SharedMother';
+import Id from '../../../../../src/Context/Shared/Domain/ValueObject/Id';
+import { SharedMother } from '../../../SharedMother';
 
 describe('Id', () => {
     it('should be a string with 36 chars length', () => {

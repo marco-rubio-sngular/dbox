@@ -9,10 +9,10 @@ import FaqCreateResponse from './FaqCreateResponse';
 class FaqCreateService {
     constructor(private readonly repository: FaqRepository) {}
 
-    execute(request: FaqCreateRequest): FaqCreateResponse {
+    async execute(request: FaqCreateRequest): Promise<FaqCreateResponse> {
         const faq: Faq = this.createFaqFromRequest(request);
 
-        this.repository.create(faq);
+        await this.repository.create(faq);
 
         return new FaqCreateResponse(faq.id.value);
     }

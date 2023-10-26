@@ -1,9 +1,9 @@
-import BadRequestException from '../../../../../src/Context/Shared/Domain/Exception/BadRequestException';
-import Id from '../../../../../src/Context/Shared/Domain/ValueObject/Id';
-import Title from '../../../../../src/Context/Shared/Domain/ValueObject/Title';
-import Faq from '../../../../../src/Context/Support/Faq/Domain/Model/Faq';
-import Solution from '../../../../../src/Context/Support/Faq/Domain/ValueObject/Solution';
-import SupportMother from '../../../SupportMother';
+import BadRequestException from '../../../../../../src/Context/Shared/Domain/Exception/BadRequestException';
+import Id from '../../../../../../src/Context/Shared/Domain/ValueObject/Id';
+import Title from '../../../../../../src/Context/Shared/Domain/ValueObject/Title';
+import Faq from '../../../../../../src/Context/Support/Faq/Domain/Model/Faq';
+import Solution from '../../../../../../src/Context/Support/Faq/Domain/ValueObject/Solution';
+import SupportMother from '../../../../SupportMother';
 
 describe('Faq model', () => {
     it('should create statically to create new faq, created at will be generated', () => {
