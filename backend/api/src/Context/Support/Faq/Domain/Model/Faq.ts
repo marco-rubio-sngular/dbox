@@ -23,6 +23,20 @@ class Faq {
 
         return new Faq(id, title, solution, created);
     }
+
+    public toPrimitives(): {
+        id: string;
+        title: string;
+        solution: string;
+        createdAt: Date;
+    } {
+        return {
+            id: this.id.value,
+            title: this.title.value,
+            solution: this.solution.value,
+            createdAt: this.createdAt,
+        };
+    }
 }
 
 export default Faq;

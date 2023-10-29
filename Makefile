@@ -1,14 +1,14 @@
-backend-start:
+bstart:
 	bash backend/docker/bin/start.sh &
-backend-stop:
+bstop:
 	bash backend/docker/bin/stop.sh
-backend-apish:
+bapish:
 	bash backend/docker/bin/apish.sh
-backend-mariadbsh:
+bmariadbsh:
 	bash backend/docker/bin/mariadbsh.sh
-backend-test:
+btest:
 	bash backend/docker/bin/testsh.sh
-backend-format:
+bformat:
 	bash backend/docker/bin/format.sh
-backend-lint:
+blint:
 	bash backend/docker/bin/lint.sh

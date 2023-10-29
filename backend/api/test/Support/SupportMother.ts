@@ -3,6 +3,12 @@ import Title from '../../src/Context/Shared/Domain/ValueObject/Title';
 import FaqCreateRequest from '../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
 import FaqCreateResponse from '../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
 import FaqCreateService from '../../src/Context/Support/Faq/Application/Create/FaqCreateService';
+import FaqDeleteRequest from '../../src/Context/Support/Faq/Application/Delete/FaqDeleteRequest';
+import FaqDeleteResponse from '../../src/Context/Support/Faq/Application/Delete/FaqDeleteResponse';
+import FaqDeleteService from '../../src/Context/Support/Faq/Application/Delete/FaqDeleteService';
+import FaqListRequest from '../../src/Context/Support/Faq/Application/List/FaqListRequest';
+import FaqListResponse from '../../src/Context/Support/Faq/Application/List/FaqListResponse';
+import FaqListService from '../../src/Context/Support/Faq/Application/List/FaqListService';
 import Faq from '../../src/Context/Support/Faq/Domain/Model/Faq';
 import FaqRepository from '../../src/Context/Support/Faq/Domain/Persistence/FaqRepository';
 import Solution from '../../src/Context/Support/Faq/Domain/ValueObject/Solution';
@@ -12,6 +18,17 @@ class SupportMother {
     public static FAQ_SOLUTION: string = 'a'.repeat(Solution.MINIMUM_LENGTH);
     public static FAQ_CREATED_AT: Date = new Date();
     public static FAQ_ID: string = '5322fbf7-fe25-45d1-82a1-3c62fcc0ffb1';
+    public static FAQ_PATTERN: string = 'aaa';
+
+    public static FaqListService(repository: FaqRepository): FaqListService {
+        return new FaqListService(repository);
+    }
+
+    public static FaqDeleteService(
+        repository: FaqRepository
+    ): FaqDeleteService {
+        return new FaqDeleteService(repository);
+    }
 
     public static FaqCreateService(
         repository: FaqRepository
@@ -19,12 +36,34 @@ class SupportMother {
         return new FaqCreateService(repository);
     }
 
+    public static FaqDeleteResponse(): FaqDeleteResponse {
+        return new FaqDeleteResponse(
+            SupportMother.FAQ_ID,
+            SupportMother.FAQ_TITLE,
+            SupportMother.FAQ_SOLUTION,
+            SupportMother.FAQ_CREATED_AT
+        );
+    }
+
+    public static FaqDeleteRequest(): FaqDeleteRequest {
+        return new FaqDeleteRequest(SupportMother.FAQ_ID);
+    }
+
     public static FaqCreateResponse(): FaqCreateResponse {
         return new FaqCreateResponse(SupportMother.FAQ_ID);
     }
-    public static FaqCreateRequest(): FaqCreateRequest {
+
+    public static FaqListRequest(): FaqListRequest {
+        return new FaqListRequest(SupportMother.FAQ_PATTERN);
+    }
+
+    public static FaqListResponse(): FaqListResponse {
+        return new FaqListResponse([]);
+    }
+
+    public static FaqCreateRequest(id?: string): FaqCreateRequest {
         return new FaqCreateRequest(
-            SupportMother.Id().value,
+            id !== undefined ? id : SupportMother.Id().value,
             SupportMother.Title().value,
             SupportMother.Solution().value
         );

@@ -31,7 +31,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dbox`
 --
+DROP TABLE IF EXISTS `faqs`;
 
+
+CREATE TABLE
+  `faqs` (
+    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Primary Key',
+    `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
+    `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq short title',
+    `solution` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq long Solution',
+    PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'faqs';
 --
 --
 --
