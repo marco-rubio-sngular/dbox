@@ -8,7 +8,7 @@ class FaqRepositoryForTest implements FaqRepository {
         pattern;
         this.listCalled = true;
 
-        return [];
+        return [SupportMother.FaqToRead()];
     }
     public listCalled: boolean = false;
 
