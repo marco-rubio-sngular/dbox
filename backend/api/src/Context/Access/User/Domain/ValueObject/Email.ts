@@ -12,7 +12,7 @@ class Email {
         const isValid = regexp.test(this.value);
         if (isValid) return;
 
-        throw new BadRequestException('El email no es válido, tolai');
+        throw new BadRequestException(`invalid email ${this.value}`);
     }
 }
 

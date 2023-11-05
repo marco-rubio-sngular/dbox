@@ -1,25 +1,25 @@
-import Email from '../../../../../src/Context/Access/User/Domain/ValueObject/Email';
 import BadRequestException from '../../../../../src/Context/Shared/Domain/Exception/BadRequestException';
+import UserMother from '../../UserMother';
 
 describe('Test para email', () => {
-    it('should exists', () => {
+    it('should be valid', () => {
         expect(() => {
-            new Email('example@example.com');
-            new Email('a@m.co');
-            new Email('example1@eXample.com');
-            new Email('e@ex.comv');
+            UserMother.Email('example@example.comM');
+            UserMother.Email('a@m.co');
+            UserMother.Email('example1@eXample.com');
+            UserMother.Email('e@ex.comv');
         }).not.toThrowError();
     });
 
     it('should turn off the world', () => {
         expect(() => {
-            new Email('non-valid-email');
+            UserMother.Email('non-valid-email');
         }).toThrowError();
     });
 
     it('should be a domain exception', () => {
         expect(() => {
-            new Email('non-valid-email');
+            UserMother.Email('non-valid-email');
         }).toThrow(BadRequestException);
     });
 });
