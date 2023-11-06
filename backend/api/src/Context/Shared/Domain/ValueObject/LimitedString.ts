@@ -12,7 +12,7 @@ class LimitedString {
         this.validateOrThrowException();
     }
 
-    private validateOrThrowException(): void {
+    protected validateOrThrowException(): void {
         if (
             this.value.length >= this.minimum &&
             this.value.length <= this.maximum

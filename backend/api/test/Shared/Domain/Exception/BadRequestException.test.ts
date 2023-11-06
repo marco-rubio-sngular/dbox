@@ -1,6 +1,6 @@
-import BadRequestException from '../../../../../src/Context/Shared/Domain/Exception/BadRequestException';
-import DomainException from '../../../../../src/Context/Shared/Domain/Exception/DomainException';
-import { SharedMother } from '../../../SharedMother';
+import BadRequestException from '../../../../src/Context/Shared/Domain/Exception/BadRequestException';
+import DomainException from '../../../../src/Context/Shared/Domain/Exception/DomainException';
+import { SharedMother } from '../../SharedMother';
 
 const sut: BadRequestException = SharedMother.BadRequestException();
 

@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 import Id from '../../src/Context/Shared/Domain/ValueObject/Id';
 import Title from '../../src/Context/Shared/Domain/ValueObject/Title';
 import FaqCreateRequest from '../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
@@ -17,7 +18,7 @@ class SupportMother {
     public static FAQ_TITLE: string = 'a'.repeat(Title.MINIMUM_LENGTH);
     public static FAQ_SOLUTION: string = 'a'.repeat(Solution.MINIMUM_LENGTH);
     public static FAQ_CREATED_AT: Date = new Date();
-    public static FAQ_ID: string = '5322fbf7-fe25-45d1-82a1-3c62fcc0ffb1';
+    public static FAQ_ID: string = crypto.randomUUID();
     public static FAQ_PATTERN: string = 'aaa';
 
     public static FaqListService(repository: FaqRepository): FaqListService {

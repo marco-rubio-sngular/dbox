@@ -1,5 +1,5 @@
-import FaqCreateRequest from '../../../../../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
-import SupportMother from '../../../../SupportMother';
+import FaqCreateRequest from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
+import SupportMother from '../../../SupportMother';
 
 describe('FaqCreateRequest', () => {
     it('shoud create with an id, title and solution as string', () => {

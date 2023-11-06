@@ -1,6 +1,6 @@
-import FaqDeleteRequest from '../../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteRequest';
-import FaqDeleteService from '../../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteService';
-import SupportMother from '../../../../SupportMother';
+import FaqDeleteRequest from '../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteRequest';
+import FaqDeleteService from '../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteService';
+import SupportMother from '../../../SupportMother';
 import FaqRepositoryForTest from '../FaqRepositoryForTest';
 
 const respository: FaqRepositoryForTest = new FaqRepositoryForTest();

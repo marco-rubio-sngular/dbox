@@ -1,5 +1,5 @@
-import LimitedString from '../../../../../src/Context/Shared/Domain/ValueObject/LimitedString';
-import { SharedMother } from '../../../SharedMother';
+import LimitedString from '../../../../src/Context/Shared/Domain/ValueObject/LimitedString';
+import { SharedMother } from '../../SharedMother';
 
 describe('Limited string value object', () => {
     it(`should throw a child exception if char length its wrong, ${LimitedString.MINIMUM_LENGTH} - ${LimitedString.MAXIMUM_LENGTH}`, () => {

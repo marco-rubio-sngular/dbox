@@ -1,5 +1,5 @@
-import FaqCreateResponse from '../../../../../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
-import SupportMother from '../../../../SupportMother';
+import FaqCreateResponse from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
+import SupportMother from '../../../SupportMother';
 
 describe('FaqCreateResponse', () => {
     it('shoud create with an id', () => {

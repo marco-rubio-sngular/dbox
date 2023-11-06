@@ -1,15 +1,22 @@
+import * as crypto from 'crypto';
 import BadRequestException from '../../src/Context/Shared/Domain/Exception/BadRequestException';
 import InternalException from '../../src/Context/Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../src/Context/Shared/Domain/Exception/NotFoundException';
 import Id from '../../src/Context/Shared/Domain/ValueObject/Id';
 import LimitedString from '../../src/Context/Shared/Domain/ValueObject/LimitedString';
+import Tags from '../../src/Context/Shared/Domain/ValueObject/Tags';
 import Title from '../../src/Context/Shared/Domain/ValueObject/Title';
 
 export class SharedMother {
     public static TITLE_VALUE: string = 'a'.repeat(
         LimitedString.MINIMUM_LENGTH
     );
-    public static ID_VALUE: string = '8a52d7d0-6176-48d3-d077-722a6dce4b76';
+    public static ID_VALUE: string = crypto.randomUUID();
+    public static TAGS_VALUE: string = 'linux,arquitectura';
+
+    public static Tags(value?: string): Tags {
+        return new Tags(value !== undefined ? value : SharedMother.TAGS_VALUE);
+    }
 
     public static Id(value?: string): Id {
         return new Id(value !== undefined ? value : SharedMother.ID_VALUE);

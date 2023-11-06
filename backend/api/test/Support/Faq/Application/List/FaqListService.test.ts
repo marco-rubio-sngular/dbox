@@ -1,7 +1,7 @@
-import FaqListRequest from '../../../../../../src/Context/Support/Faq/Application/List/FaqListRequest';
-import FaqListResponse from '../../../../../../src/Context/Support/Faq/Application/List/FaqListResponse';
-import FaqListService from '../../../../../../src/Context/Support/Faq/Application/List/FaqListService';
-import SupportMother from '../../../../SupportMother';
+import FaqListRequest from '../../../../../src/Context/Support/Faq/Application/List/FaqListRequest';
+import FaqListResponse from '../../../../../src/Context/Support/Faq/Application/List/FaqListResponse';
+import FaqListService from '../../../../../src/Context/Support/Faq/Application/List/FaqListService';
+import SupportMother from '../../../SupportMother';
 import FaqRepositoryForTest from '../FaqRepositoryForTest';
 
 const respository: FaqRepositoryForTest = new FaqRepositoryForTest();

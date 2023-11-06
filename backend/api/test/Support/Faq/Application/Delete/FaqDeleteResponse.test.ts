@@ -1,5 +1,5 @@
-import FaqDeleteResponse from '../../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteResponse';
-import SupportMother from '../../../../SupportMother';
+import FaqDeleteResponse from '../../../../../src/Context/Support/Faq/Application/Delete/FaqDeleteResponse';
+import SupportMother from '../../../SupportMother';
 
 describe('FaqDeleteResponse', () => {
     it('shoud create with an id, title, solution and createdAt', () => {

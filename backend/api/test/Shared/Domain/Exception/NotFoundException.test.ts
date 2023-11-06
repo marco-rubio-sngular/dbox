@@ -1,6 +1,6 @@
-import DomainException from '../../../../../src/Context/Shared/Domain/Exception/DomainException';
-import NotFoundException from '../../../../../src/Context/Shared/Domain/Exception/NotFoundException';
-import { SharedMother } from '../../../SharedMother';
+import DomainException from '../../../../src/Context/Shared/Domain/Exception/DomainException';
+import NotFoundException from '../../../../src/Context/Shared/Domain/Exception/NotFoundException';
+import { SharedMother } from '../../SharedMother';
 
 const sut: NotFoundException = SharedMother.NotFoundException();
 

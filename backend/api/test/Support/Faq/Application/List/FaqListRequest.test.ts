@@ -1,5 +1,5 @@
-import FaqListRequest from '../../../../../../src/Context/Support/Faq/Application/List/FaqListRequest';
-import SupportMother from '../../../../SupportMother';
+import FaqListRequest from '../../../../../src/Context/Support/Faq/Application/List/FaqListRequest';
+import SupportMother from '../../../SupportMother';
 
 describe('FaqListRequest', () => {
     it('shoud create with an optionally pattern string', () => {

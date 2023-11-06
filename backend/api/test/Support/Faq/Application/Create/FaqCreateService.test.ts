@@ -1,7 +1,7 @@
-import FaqCreateRequest from '../../../../../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
-import FaqCreateResponse from '../../../../../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
-import FaqCreateService from '../../../../../../src/Context/Support/Faq/Application/Create/FaqCreateService';
-import SupportMother from '../../../../SupportMother';
+import FaqCreateRequest from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
+import FaqCreateResponse from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
+import FaqCreateService from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateService';
+import SupportMother from '../../../SupportMother';
 import FaqRepositoryForTest from '../FaqRepositoryForTest';
 
 const respository: FaqRepositoryForTest = new FaqRepositoryForTest();

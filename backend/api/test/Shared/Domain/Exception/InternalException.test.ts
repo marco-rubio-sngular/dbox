@@ -1,6 +1,6 @@
-import DomainException from '../../../../../src/Context/Shared/Domain/Exception/DomainException';
-import InternalException from '../../../../../src/Context/Shared/Domain/Exception/InternalException';
-import { SharedMother } from '../../../SharedMother';
+import DomainException from '../../../../src/Context/Shared/Domain/Exception/DomainException';
+import InternalException from '../../../../src/Context/Shared/Domain/Exception/InternalException';
+import { SharedMother } from '../../SharedMother';
 
 const sut: InternalException = SharedMother.InternalException();
 
