@@ -64,5 +64,9 @@
     "helmet": "6.0.1",
     "mariadb": "3.2.2",
     "node-dependency-injection": "3.0.3"
+  },
+  "overrides": 
+  {
+      "semver": "^7.5.3"  
   }
 }
