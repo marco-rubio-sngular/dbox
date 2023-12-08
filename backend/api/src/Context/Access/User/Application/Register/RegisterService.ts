@@ -1,10 +1,10 @@
-import Id from "../../../../Shared/Domain/ValueObject/Id";
-import User from "../../Domain/Model/User";
-import { UserRepository } from "../../Domain/Persistence/UserRepository";
+import Id from '../../../../Shared/Domain/ValueObject/Id';
+import User from '../../Domain/Model/User';
+import { UserRepository } from '../../Domain/Persistence/UserRepository';
 import Email from '../../Domain/ValueObject/Email';
-import Password from "../../Domain/ValueObject/Password";
-import { RegisterRequest } from "./RegisterRequest";
-import { RegisterResponse } from "./RegisterResponse";
+import Password from '../../Domain/ValueObject/Password';
+import { RegisterRequest } from './RegisterRequest';
+import { RegisterResponse } from './RegisterResponse';
 
 export class RegisterService {
     private request: RegisterRequest;

@@ -30,11 +30,9 @@ class FaqRepositoryMariaDB implements FaqRepository {
                 ]
             );
         } catch (err) {
-            console.log(err);
-
             throw new InternalException('unable to create faq ' + faq.id.value);
         } finally {
-            this.disconnect(conn);
+            await this.disconnect(conn);
         }
     }
 
@@ -71,15 +69,47 @@ class FaqRepositoryMariaDB implements FaqRepository {
 
     async list(pattern?: string): Promise<Faq[]> {
         const conn: mariadb.PoolConnection = await this.connect();
-
-        let result: Faq[] = [];
+        const result: Faq[] = [];
         try {
-            return result;
-        } catch (_) {
-            return result;
+            const likeSql: string =
+                typeof pattern === 'string' && pattern.trim() !== ''
+                    ? `%${pattern?.trim()}%`
+                    : '';
+            const where: string =
+                likeSql !== ''
+                    ? ' WHERE LOWER(title) LIKE ? OR LOWER(solution) LIKE ? '
+                    : '';
+            const values: string[] = likeSql !== '' ? [likeSql, likeSql] : [];
+            const sql: string =
+                'SELECT id,title,solution,createdAt FROM faqs ' + where;
+
+            const collection = await conn.query(sql, values);
+            collection.forEach(
+                (item: {
+                    id: string;
+                    title: string;
+                    solution: string;
+                    createdAt: string | number | Date;
+                }) => {
+                    result.push(
+                        Faq.create(
+                            new Id(item.id),
+                            new Title(item.title),
+                            new Solution(item.solution),
+                            new Date(item.createdAt)
+                        )
+                    );
+                }
+            );
+        } catch (error) {
+            throw new InternalException(
+                'unable to list faqs ' + (error as Error).message
+            );
         } finally {
-            this.disconnect(conn);
+            await this.disconnect(conn);
         }
+
+        return result;
     }
 
     private async connect(): Promise<mariadb.PoolConnection> {
@@ -89,7 +119,7 @@ class FaqRepositoryMariaDB implements FaqRepository {
     private async disconnect(
         connection: mariadb.PoolConnection
     ): Promise<void> {
-        connection.end();
+        await connection.end();
     }
 }
 
