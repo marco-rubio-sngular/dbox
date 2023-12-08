@@ -1,0 +1,61 @@
+gitflow - implementacion paso a paso
+
+-------
+PREVIOS
+-------
+Gitflow es un modelo alternativo de creación de ramas en Git en el que se utilizan ramas de función y varias ramas principales.
+Además de las ramas de función, utiliza ramas individuales para preparar, mantener y registrar publicaciones.
+
+
+--------------
+FUNCIONAMIENTO
+--------------
+En lugar de una única rama main, este flujo de trabajo utiliza dos ramas para registrar el historial del proyecto.
+La rama main o principal almacena el historial de publicación oficial y la rama develop o de desarrollo sirve como rama de integración para las funciones. 
+Asimismo, conviene etiquetar todas las confirmaciones de la rama main con un número de versión.
+
+El primer paso es complementar la rama main predeterminada con una rama develop.
+Una forma sencilla de hacerlo es que un desarrollador cree de forma local una rama develop vacía y la envíe al servidor como veremos.
+
+
+
+
+-------
+PASO 01
+-------
+Tener un repositorio con al menos la rama main creado y clonado en local.
+
+Para esta practica usaremos un repositorio publico de github existente
+para aplicar sobre el el metodo de gitflow.
+
+Para ello lo primero, asegurarse que tenemos la rama main de la cual 
+va a partir todo.
+
+> cd /tmp/
+> git clone ssh://git@ssh.github.com:443/markitos-git/dbox.git
+> cd dbox
+
+> git status
+On branch main
+Your branch is up to date with 'origin/main'
+
+Podemos ver todas las ramas para asegurarnos de que este limpio
+
+> git branch  -a
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+como podemos observar esta seria un inicio limpio ya que solo tenemos main y
+no vamos a tener que hacer cambio alguno en las ramas que pudiera tener otro
+repositorio pero en cualquier caso tambien veremos como poder poner en marcha
+un repositorio con ramas ya creadas como develop que es de vital importancia.
+
+
+-------
+PASO 02
+-------
+Creacion de las ramas de función y varias ramas principales para gitflow
+
+
+
