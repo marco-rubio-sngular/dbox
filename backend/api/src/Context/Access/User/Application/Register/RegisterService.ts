@@ -1,4 +1,12 @@
-class RegisterService {
+import Id from "../../../../Shared/Domain/ValueObject/Id";
+import User from "../../Domain/Model/User";
+import { UserRepository } from "../../Domain/Persistence/UserRepository";
+import Email from '../../Domain/ValueObject/Email';
+import Password from "../../Domain/ValueObject/Password";
+import { RegisterRequest } from "./RegisterRequest";
+import { RegisterResponse } from "./RegisterResponse";
+
+export class RegisterService {
     private request: RegisterRequest;
     private users: UserRepository;
 
@@ -8,20 +16,16 @@ class RegisterService {
     }
 
     public execute(): RegisterResponse {
-        const id: string = this.generateId();
+        const id: string = crypto.randomUUID().toString();
 
         const user: User = new User(
-            id,
-            this.request.getEmail(),
-            this.request.getPassword()
+            new Id(id),
+            new Email(this.request.getEmail()),
+            new Password(this.request.getPassword())
         );
 
         this.users.register(user);
 
         return new RegisterResponse(id);
-    }
-
-    private generateId(): string {
-        return 'string-con-formato-uuid';
     }
 }

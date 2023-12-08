@@ -1,4 +1,4 @@
-class RegisterRequest {
+export class RegisterRequest {
     private readonly email: string;
     private readonly password: string;
 

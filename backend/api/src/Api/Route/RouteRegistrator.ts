@@ -8,7 +8,7 @@ export default class RouteRegistrator {
     }
 
     public registerFile(routePath: string, router: Router) {
-        const route = require(routePath);
-        route.register(router);
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require(routePath).register(router);
     }
 }

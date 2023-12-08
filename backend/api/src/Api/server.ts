@@ -30,7 +30,13 @@ export class Server {
         new RouteRegistrator().register(router);
 
         router.use(
-            (err: Error, _req: Request, res: Response, _next: Function) => {
+            (
+                err: Error,
+                _req: Request,
+                res: Response,
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-types
+                _next: Function
+            ): void => {
                 console.log(err);
                 res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
             }
