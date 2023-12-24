@@ -34,8 +34,8 @@ CREATE TABLE
   `faqs` (
     `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
-    `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq short title',
-    `solution` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq long Solution',
+    `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq short title',
+    `solution` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq long Solution',
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'faqs';
 
@@ -45,8 +45,8 @@ CREATE TABLE
   `tags` (
     `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
-    `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Tag name',
-    `value` VARCHAR(25) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Tag value meaning',
+    `title` varchar(25) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Tag name',
+    `value` VARCHAR(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Tag value meaning',
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'tags';
 

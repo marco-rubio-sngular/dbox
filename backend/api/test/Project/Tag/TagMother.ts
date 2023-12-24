@@ -9,6 +9,7 @@ import TagListResponse from '../../../src/Context/Project/Tag/Application/List/T
 import TagListService from '../../../src/Context/Project/Tag/Application/List/TagListService';
 import Tag from '../../../src/Context/Project/Tag/Domain/Model/Tag';
 import TagRepository from '../../../src/Context/Project/Tag/Domain/Persistence/TagRepository';
+import TagTitle from '../../../src/Context/Project/Tag/Domain/ValueObject/TagTitle';
 import TagValue from '../../../src/Context/Project/Tag/Domain/ValueObject/TagValue';
 import { SharedMother } from '../../Shared/SharedMother';
 
@@ -16,6 +17,7 @@ class TagMother {
     public static TAG_CREATED_AT: Date = new Date();
     public static TAG_PATTERN: string = 'aaa';
     public static TAG_VALUE: string = 'a'.repeat(TagValue.MINIMUM_LENGTH);
+    public static TAG_TITLE: string = 'a'.repeat(TagTitle.MINIMUM_LENGTH);
 
     public static TagListService(repository: TagRepository): TagListService {
         return new TagListService(repository);
@@ -36,7 +38,7 @@ class TagMother {
     public static TagDeleteResponse(): TagDeleteResponse {
         return new TagDeleteResponse(
             SharedMother.ID_VALUE,
-            SharedMother.TITLE_VALUE,
+            TagMother.TAG_TITLE,
             TagMother.TAG_VALUE,
             TagMother.TAG_CREATED_AT
         );
@@ -61,7 +63,7 @@ class TagMother {
     public static TagCreateRequest(id?: string): TagCreateRequest {
         return new TagCreateRequest(
             id !== undefined ? id : SharedMother.Id().value,
-            SharedMother.Title().value,
+            TagMother.TagTitle().value,
             TagMother.TagValue().value
         );
     }
@@ -69,7 +71,7 @@ class TagMother {
     public static TagToCreate(): Tag {
         return Tag.create(
             SharedMother.Id(),
-            SharedMother.Title(),
+            TagMother.TagTitle(),
             TagMother.TagValue()
         );
     }
@@ -77,10 +79,14 @@ class TagMother {
     public static TagToRead(id?: string, title?: string, value?: string): Tag {
         return Tag.create(
             SharedMother.Id(id),
-            SharedMother.Title(title),
+            TagMother.TagTitle(title),
             TagMother.TagValue(value),
             TagMother.TAG_CREATED_AT
         );
+    }
+
+    public static TagTitle(value?: string): TagTitle {
+        return new TagTitle(value !== undefined ? value : TagMother.TAG_TITLE);
     }
 
     public static TagValue(value?: string): TagValue {

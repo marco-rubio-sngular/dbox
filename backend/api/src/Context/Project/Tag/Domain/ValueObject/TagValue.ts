@@ -3,7 +3,7 @@ import LimitedString from '../../../../Shared/Domain/ValueObject/LimitedString';
 
 class TagValue extends LimitedString {
     public static MINIMUM_LENGTH: number = 2;
-    public static MAXIMUM_LENGTH: number = 15;
+    public static MAXIMUM_LENGTH: number = 50;
 
     constructor(public readonly value: string) {
         super(value, TagValue.MINIMUM_LENGTH, TagValue.MAXIMUM_LENGTH);

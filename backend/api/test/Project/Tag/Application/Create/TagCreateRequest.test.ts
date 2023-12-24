@@ -7,7 +7,7 @@ describe('TagCreateRequest', () => {
         const sut: TagCreateRequest = TagMother.TagCreateRequest();
 
         expect(sut.id).toStrictEqual(SharedMother.ID_VALUE);
-        expect(sut.title).toStrictEqual(SharedMother.TITLE_VALUE);
+        expect(sut.title).toStrictEqual(TagMother.TAG_TITLE);
         expect(sut.value).toStrictEqual(TagMother.TAG_VALUE);
     });
 });

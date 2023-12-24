@@ -2,9 +2,9 @@ import mariadb from 'mariadb';
 import InternalException from '../../../../Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../../../Shared/Domain/Exception/NotFoundException';
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
 import Tag from '../../Domain/Model/Tag';
 import TagRepository from '../../Domain/Persistence/TagRepository';
+import TagTitle from '../../Domain/ValueObject/TagTitle';
 import TagValue from '../../Domain/ValueObject/TagValue';
 
 const pool = mariadb.createPool({
@@ -53,7 +53,7 @@ class TagRepositoryMariaDB implements TagRepository {
             );
             return Tag.create(
                 new Id(result.id),
-                new Title(result.title),
+                new TagTitle(result.title),
                 new TagValue(result.value),
                 new Date(result.createdAt)
             );
@@ -91,7 +91,7 @@ class TagRepositoryMariaDB implements TagRepository {
                     result.push(
                         Tag.create(
                             new Id(item.id),
-                            new Title(item.title),
+                            new TagTitle(item.title),
                             new TagValue(item.value),
                             new Date(item.createdAt)
                         )

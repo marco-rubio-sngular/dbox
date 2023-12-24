@@ -7,7 +7,7 @@ describe('TagDeleteResponse', () => {
         const sut: TagDeleteResponse = TagMother.TagDeleteResponse();
 
         expect(sut.id).toStrictEqual(SharedMother.ID_VALUE);
-        expect(sut.title).toStrictEqual(SharedMother.TITLE_VALUE);
+        expect(sut.title).toStrictEqual(TagMother.TAG_TITLE);
         expect(sut.value).toStrictEqual(TagMother.TAG_VALUE);
         expect(sut.createdAt).toStrictEqual(TagMother.TAG_CREATED_AT);
     });

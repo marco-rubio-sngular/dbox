@@ -1,18 +1,18 @@
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
+import TagTitle from '../ValueObject/TagTitle';
 import TagValue from '../ValueObject/TagValue';
 
 class Tag {
     private constructor(
         public readonly id: Id,
-        public readonly title: Title,
+        public readonly title: TagTitle,
         public readonly value: TagValue,
         public readonly createdAt: Date
     ) {}
 
     public static create(
         id: Id,
-        title: Title,
+        title: TagTitle,
         value: TagValue,
         createdAt?: Date
     ): Tag {

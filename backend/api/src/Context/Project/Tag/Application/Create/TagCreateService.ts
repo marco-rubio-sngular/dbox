@@ -1,7 +1,7 @@
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
 import Tag from '../../Domain/Model/Tag';
 import TagRepository from '../../Domain/Persistence/TagRepository';
+import TagTitle from '../../Domain/ValueObject/TagTitle';
 import TagValue from '../../Domain/ValueObject/TagValue';
 import TagCreateRequest from './TagCreateRequest';
 import TagCreateResponse from './TagCreateResponse';
@@ -20,7 +20,7 @@ class TagCreateService {
     private createTagFromRequest(request: TagCreateRequest): Tag {
         return Tag.create(
             new Id(request.id),
-            new Title(request.title),
+            new TagTitle(request.title),
             new TagValue(request.value)
         );
     }
