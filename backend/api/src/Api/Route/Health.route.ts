@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { ApiAction } from '../../Context/Shared/Domain/Action/ApiAction';
-import { PingAction } from '../Health/Action/Ping/PingAction';
+import { PingAction } from '../Health/Action/PingAction';
 
 export const register = (router: Router) => {
     const feature: ApiAction = new PingAction();
