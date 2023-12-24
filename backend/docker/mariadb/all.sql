@@ -28,21 +28,28 @@ SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
---
--- Base de datos: `dbox`
---
+
 DROP TABLE IF EXISTS `faqs`;
-
-
 CREATE TABLE
   `faqs` (
-    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Primary Key',
+    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
     `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq short title',
     `solution` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Faq long Solution',
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'faqs';
---
---
---
+
+
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE
+  `tags` (
+    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
+    `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
+    `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Tag name',
+    `value` VARCHAR(25) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Tag value meaning',
+    PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'tags';
+
+
+
 SET FOREIGN_KEY_CHECKS=1;
