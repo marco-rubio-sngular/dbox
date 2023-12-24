@@ -1,0 +1,39 @@
+1. Creamos un fichero .env con los siguientes datos (ver dot.env)
+
+AWS_ACCESS_KEY=xxx
+AWS_SECRET_ACCESS_KEY=xxx
+AWS_DEFAULT_REGION=eu-west-1
+AWS_REGION=eu-west-1
+
+Lo modificamos y guardamos (.env) en la raiz del proyecto
+
+2. Cremos nuestro fichero manifest.yaml en la raiz del proyecto
+
+Ejemplo basico con los parametros minimos REQUERIDOS
+
+module_resource_prefix: "belikek8s"
+module_resource_count: 2
+
+3. Ejecutamos init validate plan y apply
+
+Mediante Makefile tenemos los siguientes comandos
+
+make ti # terraform init
+make tv # terraform validate
+make tp # terraform plan
+make ta # terraform apply
+make td # terraform destroy
+make taa # terraform apply --auto-approve
+make tda # terraform destroy --auto-approve
+
+4. Resto de parametros que acepta el modulo, debemos ver variables.tf
+los valores por defecto de todos estos parametros
+
+sngular_mod_aws_event_bridge_rule_lambda_cloudwatch_event_rule_name
+sngular_mod_aws_event_bridge_rule_lambda_cloudwatch_event_rule_description
+sngular_mod_aws_event_bridge_rule_lambda_cloudwatch_event_rule_event_pattern_resources
+sngular_mod_aws_event_bridge_rule_lambda_cloudwatch_event_target_rule_arn
+sngular_mod_aws_event_bridge_rule_lambda_lambda_permission_statement_id
+sngular_mod_aws_event_bridge_rule_lambda_lambda_permission_action
+sngular_mod_aws_event_bridge_rule_lambda_lambda_function_name
+sngular_mod_aws_event_bridge_rule_lambda_lambda_permission_principal
