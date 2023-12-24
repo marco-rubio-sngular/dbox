@@ -9,13 +9,13 @@ const request: FaqCreateRequest = SupportMother.FaqCreateRequest();
 const sut: FaqCreateService = SupportMother.FaqCreateService(respository);
 
 describe('FaqCreateService', () => {
-    it('shoud create a faq', async() => {
+    it('shoud create a faq', async () => {
         await sut.execute(request);
 
         expect(respository.createdCalled).toBeTruthy();
     });
 
-    it('shoud result a response with create faq id', async() => {
+    it('shoud result a response with create faq id', async () => {
         const result: FaqCreateResponse = await sut.execute(request);
 
         expect(result.id).toStrictEqual(SupportMother.FAQ_ID);

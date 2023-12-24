@@ -29,7 +29,7 @@ class Faq {
         title: string;
         solution: string;
         createdAt: Date;
-        } {
+    } {
         return {
             id: this.id.value,
             title: this.title.value,
