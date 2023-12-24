@@ -9,7 +9,7 @@ const request: TagListRequest = TagMother.TagListRequest();
 const sut: TagListService = TagMother.TagListService(respository);
 
 describe('TagListService', () => {
-    it('shoud list a tags', async () => {
+    it('shoud list a tags', async() => {
         const response: TagListResponse = await sut.execute(request);
 
         expect(response).toBeInstanceOf(TagListResponse);

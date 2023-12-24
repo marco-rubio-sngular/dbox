@@ -10,13 +10,13 @@ const request: TagCreateRequest = TagMother.TagCreateRequest();
 const sut: TagCreateService = TagMother.TagCreateService(respository);
 
 describe('TagCreateService', () => {
-    it('shoud create a tag', async () => {
+    it('shoud create a tag', async() => {
         await sut.execute(request);
 
         expect(respository.createdCalled).toBeTruthy();
     });
 
-    it('shoud result a response with create tag id', async () => {
+    it('shoud result a response with create tag id', async() => {
         const result: TagCreateResponse = await sut.execute(request);
 
         expect(result.id).toStrictEqual(SharedMother.ID_VALUE);
