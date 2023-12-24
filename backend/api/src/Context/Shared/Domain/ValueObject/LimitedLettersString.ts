@@ -14,15 +14,12 @@ class LimitedLettersString {
     }
 
     protected validateOrThrowException(): void {
+        const ereg: RegExp = new RegExp(/^[A-Za-z]+$/);
         if (
             this.value.length >= this.minimum &&
-            this.value.length <= this.maximum
+            this.value.length <= this.maximum &&
+            ereg.test(this.value)
         ) {
-            return;
-        }
-
-        const ereg: RegExp = new RegExp('/^[aA-zZ]+$/');
-        if (ereg.test(this.value)) {
             return;
         }
 
