@@ -1,6 +1,6 @@
-output "local_environment_data" {
-  value = local.environment_data
-}
+# output "local_environment_data" {
+#   value = local.environment_data
+# }
 
 output "aws_s3_bucket_backend" {
   value = aws_s3_bucket.aws_s3_bucket_backend.bucket

@@ -15,8 +15,6 @@ terraform {
 
 
 provider "aws" {
-  region  = local.environment_data.AWS_REGION
-  profile = local.environment_data.AWS_PROFILE
 }
 
 resource "aws_s3_bucket" "aws_s3_bucket_backend" {
