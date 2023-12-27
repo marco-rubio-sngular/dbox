@@ -104,6 +104,20 @@ const NavBar: React.FC<object> = () => {
                     Faqs
                   </Typography>
                 </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    setAnchorElNav(null);
+                    navigate("/modules");
+                  }}
+                >
+                  <Typography
+                    textAlign="center"
+                    variant="caption"
+                    color="primary"
+                  >
+                    Modules
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -130,6 +144,18 @@ const NavBar: React.FC<object> = () => {
                 sx={{ my: 2, display: "block" }}
               >
                 Faqs
+              </Button>
+              <Button
+                variant="text"
+                color="primary"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  setAnchorElNav(null);
+                  navigate("/modules");
+                }}
+                sx={{ my: 2, display: "block" }}
+              >
+                Modules
               </Button>
             </Box>
             {/* <IconButton

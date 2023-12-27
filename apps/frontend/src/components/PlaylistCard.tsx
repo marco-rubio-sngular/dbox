@@ -19,7 +19,6 @@ const PlaylistCardComponent: React.FC<TagType> = (tag: TagType) => {
   };
 
   const tagText: string = `${tag.title} - ${tag.value}`;
-  console.log(tagText, tag.createdAt);
   return (
     <ListItem>
       <ListItemIcon>
@@ -28,7 +27,7 @@ const PlaylistCardComponent: React.FC<TagType> = (tag: TagType) => {
       <ListItemText
         id={`switch-list-label-${tag.title}`}
         secondary={tagText}
-        primary={tag.createdAt}
+        primary={tag.createdAt.toString()}
         primaryTypographyProps={{ variant: "h6", color: "primary" }}
         secondaryTypographyProps={{ variant: "body2", color: "secondary" }}
       />
