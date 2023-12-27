@@ -1,6 +1,7 @@
 import { json, urlencoded } from 'body-parser';
 import compress from 'compression';
 import cors from 'cors';
+import errorHandler from 'errorhandler';
 import express from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
@@ -25,9 +26,13 @@ export class Server {
         this.express.use(compress());
         const router = Router();
         this.express.use(router);
-
-        this.express.on('error', function (e) {
-            // do your thing
+        this.express.use(errorHandler());
+        this.express.on('error', function(e) {
+            console.error('');
+            console.error('----- startof.ERROR ON EXPRESS SERVER -----');
+            console.error(e);
+            console.error('----- endof.ERROR ON EXPRESS SERVER -----');
+            console.error('');
         });
 
         new RouteRegistrator().register(router);

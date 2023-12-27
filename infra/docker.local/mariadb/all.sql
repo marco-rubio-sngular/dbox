@@ -29,6 +29,28 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
+DROP TABLE IF EXISTS `modules`;
+CREATE TABLE
+  `modules` (
+    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
+    `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
+    `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module short title',
+    `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module long Solution',
+    PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'modules';
+
+DROP TABLE IF EXISTS `modules_files`;
+CREATE TABLE
+  `modules_files` (
+    `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
+    `moduleId` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Relation Key',
+    `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
+    `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module short title',
+    `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module long Solution',
+    PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'modules_files';
+
+
 DROP TABLE IF EXISTS `faqs`;
 CREATE TABLE
   `faqs` (

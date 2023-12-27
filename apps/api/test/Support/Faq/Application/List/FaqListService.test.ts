@@ -9,7 +9,7 @@ const request: FaqListRequest = FaqMother.FaqListRequest();
 const sut: FaqListService = FaqMother.FaqListService(respository);
 
 describe('FaqListService', () => {
-    it('shoud list a faqs', async () => {
+    it('shoud list a faqs', async() => {
         const response: FaqListResponse = await sut.execute(request);
 
         expect(response).toBeInstanceOf(FaqListResponse);

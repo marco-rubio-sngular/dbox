@@ -4,7 +4,7 @@ import RouterLayout from "./common/RouterLayout";
 import { HomePage } from "./pages/home";
 import { LoginPage } from "./pages/login";
 import RouterMinimalLayout from "./common/RouterMinimalLayout";
-import FaqPage from "./pages/faq";
+import { FaqPage } from "./pages/faq";
 
 export const AppRouter: React.FC<object> = () => {
   return (

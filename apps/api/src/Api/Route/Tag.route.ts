@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { ApiAction } from '../../Context/Shared/Domain/Action/ApiAction';
-import { TagCreateAction } from '../Support/Tag/Action/TagCreateAction';
-import { TagDeleteAction } from '../Support/Tag/Action/TagDeleteAction';
-import { TagListAction } from '../Support/Tag/Action/TagListAction';
+import { TagCreateAction } from '../Support/Tag/TagCreateAction';
+import { TagDeleteAction } from '../Support/Tag/TagDeleteAction';
+import { TagListAction } from '../Support/Tag/TagListAction';
 
 export const register = (router: Router) => {
     router.get('/api/v1/tags', (req: Request, res: Response) => {

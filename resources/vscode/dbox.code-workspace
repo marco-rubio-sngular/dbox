@@ -4,14 +4,13 @@
       "path": "../.."
     },
     {
-      "path": "../../../../../../../../private/tmp/slash-admin"
+      "path": "../../../../../../../../private/tmp/my-admin"
+    },
+    {
+      "path": "../../../../../personal/terraform.modules"
     },
     {
       "path": "../../../../../personal/markitos.es"
-    },
-    {
-      "path": "../../../../../personal/mdk/arquetipo-typescript-api-http/markitos.es/backend/api/src/Context/Support"
     }
-  ],
-  "settings": {}
+  ]
 }

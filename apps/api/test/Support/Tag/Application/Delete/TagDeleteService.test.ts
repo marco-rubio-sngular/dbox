@@ -8,7 +8,7 @@ const request: TagDeleteRequest = TagMother.TagDeleteRequest();
 const sut: TagDeleteService = TagMother.TagDeleteService(respository);
 
 describe('TagDeleteService', () => {
-    it('shoud delete a tag', async () => {
+    it('shoud delete a tag', async() => {
         await sut.execute(request);
 
         expect(respository.deletedCalled).toBeTruthy();

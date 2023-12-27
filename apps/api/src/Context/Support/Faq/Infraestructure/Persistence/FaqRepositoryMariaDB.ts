@@ -38,8 +38,15 @@ class FaqRepositoryMariaDB implements FaqRepository {
 
     async delete(id: Id): Promise<void> {
         const conn: mariadb.PoolConnection = await this.connect();
+
         try {
-            await conn.query('DELETE FROM faqs WHERE id=? LIMIT 1', [id.value]);
+            const result = await conn.query(
+                'DELETE FROM faqs WHERE id=? LIMIT 1',
+                [id.value]
+            );
+            if (result.affectedRows !== 1) {
+                throw new Error();
+            }
         } catch (err) {
             throw new NotFoundException('unable to delete faq ' + id.value);
         } finally {

@@ -1,9 +1,7 @@
-import { VideoLibraryTwoTone } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Avatar,
-  Badge,
   Box,
   Button,
   Container,
@@ -15,17 +13,15 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
-import { FavoriteComponent } from "./Favorite";
 
 const NavBar: React.FC<object> = () => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const items = useAppSelector((state) => state.favoriteReducer);
-  const [open, setOpen] = React.useState<boolean>(false);
-  const handleStateViewDrawer = (state: boolean) => setOpen(state);
+  // const items = useAppSelector((state) => state.favoriteReducer);
+  // const [open, setOpen] = React.useState<boolean>(false);
+  // const handleStateViewDrawer = (state: boolean) => setOpen(state);
 
   return (
     <>
@@ -136,21 +132,21 @@ const NavBar: React.FC<object> = () => {
                 Faqs
               </Button>
             </Box>
-            <IconButton
+            {/* <IconButton
               color="primary"
               onClick={() => handleStateViewDrawer(true)}
             >
               <Badge color="error" badgeContent={items.length}>
                 <VideoLibraryTwoTone />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </Container>
       </AppBar>
-      <FavoriteComponent
+      {/* <FavoriteComponent
         open={open}
         handleStateViewDrawer={handleStateViewDrawer}
-      />
+      /> */}
     </>
   );
 };
