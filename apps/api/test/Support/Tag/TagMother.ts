@@ -2,7 +2,6 @@ import TagCreateRequest from '../../../src/Context/Support/Tag/Application/Creat
 import TagCreateResponse from '../../../src/Context/Support/Tag/Application/Create/TagCreateResponse';
 import TagCreateService from '../../../src/Context/Support/Tag/Application/Create/TagCreateService';
 import TagDeleteRequest from '../../../src/Context/Support/Tag/Application/Delete/TagDeleteRequest';
-import TagDeleteResponse from '../../../src/Context/Support/Tag/Application/Delete/TagDeleteResponse';
 import TagDeleteService from '../../../src/Context/Support/Tag/Application/Delete/TagDeleteService';
 import TagListRequest from '../../../src/Context/Support/Tag/Application/List/TagListRequest';
 import TagListResponse from '../../../src/Context/Support/Tag/Application/List/TagListResponse';
@@ -33,15 +32,6 @@ class TagMother {
         repository: TagRepository
     ): TagCreateService {
         return new TagCreateService(repository);
-    }
-
-    public static TagDeleteResponse(): TagDeleteResponse {
-        return new TagDeleteResponse(
-            SharedMother.ID_VALUE,
-            TagMother.TAG_TITLE,
-            TagMother.TAG_VALUE,
-            TagMother.TAG_CREATED_AT
-        );
     }
 
     public static TagDeleteRequest(): TagDeleteRequest {
