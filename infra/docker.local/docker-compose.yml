@@ -1,0 +1,74 @@
+version: "3.3"
+#----------------------------------------------------------
+# definicion de la red y rango de ips
+#
+# dbox project
+#----------------------------------------------------------
+networks:
+  dbox-network:
+    ipam:
+      config:
+        - subnet: 172.21.1.0/24
+services:
+  dbox.api:
+    user: "1000:1000"
+    build: api
+    container_name: "dbox.api"
+    ports:
+      - 3000:3000
+    volumes:
+      - ../../apps/api:/app
+    extra_hosts:
+      - "mariadb:172.21.1.12"
+    hostname: dbox.api
+    networks:
+      dbox-network:
+        ipv4_address: 172.21.1.14
+
+
+  dbox.frontend:
+    image: node:alpine
+    container_name: dbox.frontend
+    command: sh -c "npm i && npm run dev"
+    ports:
+      - 5173:5173
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ../../apps/frontend
+        target: /app
+    tty: true
+    hostname: dbox.frontend
+    networks:
+        dbox-network:
+          ipv4_address: 172.21.1.15
+
+  # dbox.frontend:
+  #   user: "1000:1000"
+  #   build:
+  #     context: ../../apps/frontend
+  #     dockerfile: ../../infra/docker.local/frontend/Dockerfile
+  #   container_name: "dbox.frontend"
+  #   ports:
+  #     - 80:5173
+  #   volumes:
+  #     - ../frontend:/app
+  #   environment:    
+  #       - VITE_API_ENDPOINT=http://localhost:3000/api/v1
+  #   hostname: dbox.frontend
+  #   networks:
+  #       dbox-network:
+  #         ipv4_address: 172.21.1.15
+
+  dbox.mariadb:
+    build: mariadb
+    container_name: "dbox.mariadb"
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/lib/mysql
+    restart: always
+    hostname: dbox.mariadb
+    networks:
+      dbox-network:
+        ipv4_address: 172.21.1.12
