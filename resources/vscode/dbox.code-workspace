@@ -2,12 +2,6 @@
   "folders": [
     {
       "path": "../.."
-    },
-    {
-      "path": "../../../../../personal/terraform.modules"
-    },
-    {
-      "path": "../../../../../personal/markitos.es"
     }
   ]
 }
