@@ -29,7 +29,7 @@ class Module {
         title: string;
         description: string;
         createdAt: Date;
-    } {
+        } {
         return {
             id: this.id.value,
             title: this.title.value,

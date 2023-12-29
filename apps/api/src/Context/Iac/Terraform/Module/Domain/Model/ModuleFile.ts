@@ -43,7 +43,7 @@ class ModuleFile {
         description: string;
         filename: string;
         createdAt: Date;
-    } {
+        } {
         return {
             id: this.id.value,
             moduleId: this.moduleId.value,
