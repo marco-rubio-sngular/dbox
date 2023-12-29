@@ -1,5 +1,4 @@
 import Base64ImageWriter from '../../../../../Shared/Domain/Lib/Base64ImageWriter';
-import { createBasedirIntoCdnDirIfNotExists } from '../../../../../Shared/Domain/Lib/FsTools';
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
@@ -18,8 +17,6 @@ class ModuleFileCreateService {
     async execute(
         request: ModuleFileCreateRequest
     ): Promise<ModuleFileCreateResponse> {
-        createBasedirIntoCdnDirIfNotExists(request.moduleId);
-
         const examplePathAddon: string = request.filename.startsWith('example')
             ? '/examples'
             : '';

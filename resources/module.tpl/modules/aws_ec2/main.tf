@@ -9,27 +9,32 @@ terraform {
   }
 }
 
-# Deploy an EC2 Instance.
 resource "aws_instance" "example" {
-  # Run an Ubuntu 18.04 AMI on the EC2 instance.
-  ami                    = "ami-02cad064a29d4550c"
-  instance_type          = "t2.micro"
+  count                  = var.how_many_instances
+  ami                    = var.ami
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.instance.id]
 
-  # When the instance boots, start a web server on port 8080 that responds with "Hello, World!".
   user_data = <<EOF
 #!/bin/bash
+# This code block creates an index.html file with the content "Hello, World!"
 echo "Hello, World!" > index.html
-nohup busybox httpd -f -p 8080 &
+nohup busybox httpd -f -p 80 &
 EOF
 }
 
-# Allow the instance to receive requests on port 8080.
 resource "aws_security_group" "instance" {
   ingress {
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }

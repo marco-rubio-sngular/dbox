@@ -2,6 +2,12 @@
   "folders": [
     {
       "path": "../.."
+    },
+    {
+      "path": "../../../../msc/terraform-msc-2024/terraform"
+    },
+    {
+      "path": "../../../../../personal/courses/markitos.es.courses.terraform/aws-load-balancer"
     }
   ]
 }

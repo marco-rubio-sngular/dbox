@@ -7,11 +7,13 @@ variable "how_many_instances" {
 variable "ami" {
   description = "AMI to use for the EC2 instances"
   type        = string
+  default     = "ami-0aef57767f5404a3c"
 }
 
 variable "instance_type" {
   description = "Type of the EC2 instance"
   type        = string
+  default     = "t2.micro"
 }
 
 variable "project_name" {
@@ -25,6 +27,8 @@ variable "project_name" {
     condition     = length(var.project_name) >= 3 && length(var.project_name) <= 10
     error_message = "The project name must be between 3 and 10 characters."
   }
+
+  default = "dbox"
 }
 
 variable "company_name" {
@@ -38,6 +42,7 @@ variable "company_name" {
     condition     = length(var.company_name) >= 3 && length(var.company_name) <= 10
     error_message = "The company name must be between 3 and 10 characters."
   }
+  default = "sngular"
 }
 
 variable "environment" {
@@ -47,13 +52,20 @@ variable "environment" {
     condition     = can(regex("^(test|pro)$", var.environment))
     error_message = "The environment must be test or pro"
   }
+  default = "test"
 }
 
 variable "common_tags" {
   description = "Common tags for all resources"
   type = object({
-    Environment = string
     Project     = string
+    Environment = string
     CreatedBy   = string
   })
+
+  default = {
+    Project     = "dbox"
+    Environment = "test"
+    CreatedBy   = "sngular"
+  }
 }
