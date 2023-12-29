@@ -16,7 +16,10 @@ export const AppRouter: React.FC<object> = () => {
         <Route path="/tags" element={<HomePage />} />
         <Route path="/faqs" element={<FaqPage />} />
         <Route path="/modules" element={<ModulePage />} />
-        <Route path="/modules/:moduleId" element={<ModuleDetailPage />} />
+        <Route
+          path="/modules/:moduleId/details"
+          element={<ModuleDetailPage />}
+        />
       </Route>
       <Route path="/" element={<RouterMinimalLayout />}>
         <Route path="/login" element={<LoginPage />} />

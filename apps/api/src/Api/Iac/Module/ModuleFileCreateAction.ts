@@ -6,6 +6,7 @@ import ModuleFileCreateService from '../../../Context/Iac/Terraform/Module/Appli
 import ModuleRepository from '../../../Context/Iac/Terraform/Module/Domain/Persistence/ModuleRepository';
 import ModuleRepositoryMariaDB from '../../../Context/Iac/Terraform/Module/Infraestructure/Persistence/ModuleRepositoryMariaDB';
 import { ApiAction } from '../../../Context/Shared/Domain/Action/ApiAction';
+import BaseAction from '../../../Context/Shared/Domain/Action/BaseAction';
 import Base64ImageWriter from '../../../Context/Shared/Domain/Lib/Base64ImageWriter';
 import Base64ImageWriterNodeBase64Image from '../../../Context/Shared/Infraestructure/Base64ImageWriterNodeBase64Image';
 import { getModuleFileUrl } from '../../helpers';
@@ -17,7 +18,7 @@ const service: ModuleFileCreateService = new ModuleFileCreateService(
     imagener
 );
 
-export class ModuleFileCreateAction implements ApiAction {
+export class ModuleFileCreateAction extends BaseAction implements ApiAction {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const moduleId: string = req.params.moduleId;
@@ -27,6 +28,7 @@ export class ModuleFileCreateAction implements ApiAction {
                     moduleId,
                     req.body.title,
                     req.body.description,
+                    req.body.filename,
                     req.body.content
                 );
 

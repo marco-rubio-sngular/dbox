@@ -1,6 +1,7 @@
 import Base64ImageWriter from '../../../../../Shared/Domain/Lib/Base64ImageWriter';
 import { createBasedirIntoCdnDirIfNotExists } from '../../../../../Shared/Domain/Lib/FsTools';
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
+import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
 import Title from '../../../../../Shared/Domain/ValueObject/Title';
 import ModuleFile from '../../Domain/Model/ModuleFile';
@@ -19,9 +20,12 @@ class ModuleFileCreateService {
     ): Promise<ModuleFileCreateResponse> {
         createBasedirIntoCdnDirIfNotExists(request.moduleId);
 
+        const examplePathAddon: string = request.filename.startsWith('example')
+            ? '/examples'
+            : '';
         await this.imagener.write(
             request.base64File,
-            request.moduleId + '/' + request.id,
+            request.moduleId + examplePathAddon + '/' + request.id,
             'tf'
         );
         const moduleFile: ModuleFile =
@@ -39,7 +43,8 @@ class ModuleFileCreateService {
             new Id(request.id),
             new Id(request.moduleId),
             new Title(request.title),
-            new Description(request.description)
+            new Description(request.description),
+            new FileName(request.filename)
         );
     }
 }

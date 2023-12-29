@@ -2,6 +2,7 @@ import mariadb from 'mariadb';
 import InternalException from '../../../../../Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../../../../Shared/Domain/Exception/NotFoundException';
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
+import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
 import Title from '../../../../../Shared/Domain/ValueObject/Title';
 import Module from '../../Domain/Model/Module';
@@ -42,12 +43,13 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
         const conn: mariadb.PoolConnection = await this.connect();
         try {
             await conn.query(
-                'INSERT INTO modules_files(id,moduleId,title,description,createdAt) value (?, ?, ?, ?, ?)',
+                'INSERT INTO modules_files(id,moduleId,title,description,filename,createdAt) value (?, ?, ?, ?, ?, ?)',
                 [
                     moduleFile.id.value,
                     moduleFile.moduleId.value,
                     moduleFile.title.value,
                     moduleFile.description.value,
+                    moduleFile.filename.value,
                     moduleFile.createdAt,
                 ]
             );
@@ -130,11 +132,12 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                 [id.value]
             );
             return ModuleFile.create(
-                new Id(result.id),
-                new Id(result.moduleId),
-                new Title(result.title),
-                new Description(result.description),
-                new Date(result.createdAt)
+                new Id(result[0].id),
+                new Id(result[0].moduleId),
+                new Title(result[0].title),
+                new Description(result[0].description),
+                new FileName(result[0].filename),
+                new Date(result[0].createdAt)
             );
         } catch (err) {
             throw new NotFoundException(
@@ -207,7 +210,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                     ? [moduleId.value, likeSql, likeSql]
                     : [moduleId.value];
             const sql: string =
-                'SELECT id,moduleId,title,description,createdAt FROM modules_files ' +
+                'SELECT id,moduleId,title,description,filename,createdAt FROM modules_files ' +
                 where;
 
             const collection = await conn.query(sql, values);
@@ -217,6 +220,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                     moduleId: string;
                     title: string;
                     description: string;
+                    filename: string;
                     createdAt: string | number | Date;
                 }) => {
                     result.push(
@@ -225,6 +229,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                             new Id(item.moduleId),
                             new Title(item.title),
                             new Description(item.description),
+                            new FileName(item.filename),
                             new Date(item.createdAt)
                         )
                     );

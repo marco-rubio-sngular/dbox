@@ -8,7 +8,6 @@ export const faqs = {
     });
     const result = collection.data === undefined ? [] : collection.data;
     return result.list.map((item: FaqType) => {
-      item.createdAt = new Date(item.createdAt);
       return item;
     });
   },

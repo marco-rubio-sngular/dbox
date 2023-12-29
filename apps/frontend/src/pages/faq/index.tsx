@@ -1,47 +1,63 @@
-import {
-  Alert,
-  Box,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import React from "react";
-import { faqs } from "../../api/faq.ts";
-import HeaderComponent from "../../components/Header.tsx";
-import { FaqType } from "../../types/FaqType.ts";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Box, CircularProgress, Collapse, Container } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { fromBase64 } from "js-base64";
+import * as React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { faqs } from "../../api/faq";
+import HeaderComponent from "../../components/Header";
+import { FaqType } from "../../types/FaqType";
+import { stackoverflowDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+function Row({ faq }: { faq: FaqType }) {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <TableRow
+        sx={{ "& > *": { borderBottom: "unset" } }}
+        key={faq.id}
+        onClick={() => setOpen(!open)}
+      >
+        <TableCell>
+          <IconButton aria-label="expand row" size="small">
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row" sx={{ wordWrap: "break-word" }}>
+          {faq.id}
+        </TableCell>
+        <TableCell align="left">{faq.createdAt.toString()}</TableCell>
+        <TableCell align="left">{faq.title}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
+          <Collapse in={open} timeout="auto" unmountOnExit easing={"easing"}>
+            <SyntaxHighlighter language="markdown" style={stackoverflowDark}>
+              {fromBase64(faq.solution)}
+            </SyntaxHighlighter>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
+  );
+}
 
 export const FaqPage: React.FC<object> = () => {
   const [rows, setRows] = React.useState<FaqType[] | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
 
-  const columns = React.useMemo<GridColDef<FaqType>[]>(
-    () => [
-      {
-        field: "createdAt",
-        headerName: "Created At",
-        type: "dateTime",
-        flex: 1,
-      },
-      { field: "title", headerName: "Title", flex: 1 },
-    ],
-    []
-  );
-
   const list = async () => {
     const collection: FaqType[] = await faqs.getAll();
-
-    const lists: FaqType[] = [];
-    collection.forEach((item) => {
-      lists.push({
-        id: item.id,
-        title: item.title,
-        solution: item.solution,
-        createdAt: item.createdAt,
-      });
-    });
-
-    return lists;
+    return collection;
   };
   React.useEffect(() => {
     setLoading(true);
@@ -57,50 +73,36 @@ export const FaqPage: React.FC<object> = () => {
 
   return (
     <Container maxWidth="xl">
-      <HeaderComponent title="" description="faqs" />
+      <HeaderComponent title="Faqs" description="blog-kb" />
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <CircularProgress />
         </Box>
       ) : (
-        <>
-          <div style={{ width: "100%" }}>
-            {rows!.length !== 0 ? (
-              <DataGrid
-                autoHeight={true}
-                rows={rows!}
-                columns={columns}
-                density="standard"
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 20 },
-                  },
-                }}
-                pageSizeOptions={[10, 20, 50, 100]}
-              />
-            ) : (
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  mt: 2,
-                }}
-              >
-                <Alert severity="error" variant="outlined">
-                  <Typography
-                    sx={{ mt: 1, mb: 1 }}
-                    variant="body1"
-                    textAlign={"center"}
-                  >
-                    Ups! parece que no hay datos
-                  </Typography>
-                </Alert>
-              </Box>
-            )}
-          </div>
-        </>
+        <TableContainer component={Paper}>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell align="left" width={"25%"}>
+                  ID
+                </TableCell>
+                <TableCell align="left" width={"20%"}>
+                  CreatedAt
+                </TableCell>
+                <TableCell align="left">Title</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows?.map((aFaq: FaqType) => {
+                return <Row key={aFaq.id} faq={aFaq} />;
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </Container>
   );
 };
+
+export default FaqPage;

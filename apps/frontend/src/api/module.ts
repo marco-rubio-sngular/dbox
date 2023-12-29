@@ -19,6 +19,16 @@ export const modules = {
     return result.data;
   },
 
+  getFileContentById: async function (
+    moduleId: string,
+    fileId: string
+  ): Promise<string> {
+    const result = await instance.get(
+      `/iac/modules/${moduleId}/files/${fileId}`
+    );
+    return result.data;
+  },
+
   encode: async function (text: string) {
     return btoa(
       encodeURIComponent(text).replace(/%([0-9A-F]{2})/g, (_match, p1) => {

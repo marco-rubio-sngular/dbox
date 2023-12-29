@@ -8,6 +8,7 @@ import Module from '../../../Context/Iac/Terraform/Module/Domain/Model/Module';
 import ModuleRepository from '../../../Context/Iac/Terraform/Module/Domain/Persistence/ModuleRepository';
 import ModuleRepositoryMariaDB from '../../../Context/Iac/Terraform/Module/Infraestructure/Persistence/ModuleRepositoryMariaDB';
 import { ApiAction } from '../../../Context/Shared/Domain/Action/ApiAction';
+import BaseApiAction from '../../../Context/Shared/Domain/Action/BaseAction';
 
 const repository: ModuleRepository = new ModuleRepositoryMariaDB();
 const service: ModuleGetService = new ModuleGetService(repository);
@@ -15,7 +16,7 @@ const filesService: ModuleListFilesService = new ModuleListFilesService(
     repository
 );
 
-export class ModuleGetAction implements ApiAction {
+export class ModuleGetAction extends BaseApiAction implements ApiAction {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const request: ModuleGetRequest = new ModuleGetRequest(
@@ -27,9 +28,12 @@ export class ModuleGetAction implements ApiAction {
                 new ModuleListFilesRequest(module.id.value)
             );
 
+            const moduleRaw = module.toPrimitives();
+            moduleRaw.description = await this.decode(moduleRaw.description);
+
             res.status(HttpStatus.OK).json({
                 success: true,
-                module: module.toPrimitives(),
+                module: moduleRaw,
                 files: files.toPrimitives().map((item) => {
                     return { moduleName: module.title.value, ...item };
                 }),

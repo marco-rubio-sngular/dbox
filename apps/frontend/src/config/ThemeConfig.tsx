@@ -62,7 +62,7 @@ const theme = createTheme(
       },
     },
   },
-  esES,
+  esES
 );
 
 const ThemeConfig: React.FC<ThemeProp> = ({ children }) => (

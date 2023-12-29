@@ -14,7 +14,6 @@ class ModuleListFilesService {
             new Id(request.moduleId),
             request.pattern
         );
-        console.log(list);
 
         return new ModuleListFilesResponse(list);
     }

@@ -2,6 +2,7 @@ import * as crypto from 'crypto';
 import BadRequestException from '../../src/Context/Shared/Domain/Exception/BadRequestException';
 import InternalException from '../../src/Context/Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../src/Context/Shared/Domain/Exception/NotFoundException';
+import FileName from '../../src/Context/Shared/Domain/ValueObject/FileName';
 import Id from '../../src/Context/Shared/Domain/ValueObject/Id';
 import LimitedString from '../../src/Context/Shared/Domain/ValueObject/LimitedString';
 import Tags from '../../src/Context/Shared/Domain/ValueObject/Tags';
@@ -25,6 +26,11 @@ export class SharedMother {
     public static Title(value?: string): Title {
         return new Title(
             value !== undefined ? value : SharedMother.TITLE_VALUE
+        );
+    }
+    public static FileName(value?: string): FileName {
+        return new FileName(
+            value !== undefined ? value : (__filename as string)
         );
     }
 

@@ -9,6 +9,8 @@ export const cdnDir: string = path.join(
 export const createBasedirIntoCdnDirIfNotExists = (directory: string): void => {
     if (!fs.existsSync(cdnDir + directory)) {
         fs.mkdirSync(cdnDir + directory);
+        fs.mkdirSync(cdnDir + directory + '/examples');
+        console.log(cdnDir + directory + '/examples');
     }
 };
 

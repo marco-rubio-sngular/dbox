@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import HttpStatus from 'http-status';
 import { ApiAction } from '../../../Context/Shared/Domain/Action/ApiAction';
+import BaseApiAction from '../../../Context/Shared/Domain/Action/BaseAction';
 import FaqListRequest from '../../../Context/Support/Faq/Application/List/FaqListRequest';
 import FaqListResponse from '../../../Context/Support/Faq/Application/List/FaqListResponse';
 import FaqListService from '../../../Context/Support/Faq/Application/List/FaqListService';
@@ -10,7 +11,7 @@ import FaqRepositoryMariaDB from '../../../Context/Support/Faq/Infraestructure/P
 const repository: FaqRepository = new FaqRepositoryMariaDB();
 const service: FaqListService = new FaqListService(repository);
 
-export class FaqListAction implements ApiAction {
+export class FaqListAction extends BaseApiAction implements ApiAction {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const request: FaqListRequest = new FaqListRequest(

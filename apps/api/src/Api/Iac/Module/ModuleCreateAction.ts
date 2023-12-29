@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
-import HttpStatus from 'http-status';
 import { v4 as uuidv4 } from 'uuid';
 import ModuleCreateRequest from '../../../Context/Iac/Terraform/Module/Application/Create/ModuleCreateRequest';
 import ModuleCreateService from '../../../Context/Iac/Terraform/Module/Application/Create/ModuleCreateService';
 import ModuleRepository from '../../../Context/Iac/Terraform/Module/Domain/Persistence/ModuleRepository';
 import ModuleRepositoryMariaDB from '../../../Context/Iac/Terraform/Module/Infraestructure/Persistence/ModuleRepositoryMariaDB';
 import { ApiAction } from '../../../Context/Shared/Domain/Action/ApiAction';
+import BaseApiAction from '../../../Context/Shared/Domain/Action/BaseAction';
 
 const repository: ModuleRepository = new ModuleRepositoryMariaDB();
 const service: ModuleCreateService = new ModuleCreateService(repository);
 
-export class ModuleCreateAction implements ApiAction {
+export class ModuleCreateAction extends BaseApiAction implements ApiAction {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const request: ModuleCreateRequest = new ModuleCreateRequest(
@@ -21,12 +21,12 @@ export class ModuleCreateAction implements ApiAction {
 
             await service.execute(request);
 
-            res.status(HttpStatus.CREATED).json({
-                success: true,
-                message: { ...request },
+            this.success(res, {
+                ...request,
+                description: this.decode(request.description),
             });
         } catch (error) {
-            res.status(HttpStatus.BAD_REQUEST).send((<Error>error).message);
+            this.failed(res, <Error>error);
         }
     }
 }

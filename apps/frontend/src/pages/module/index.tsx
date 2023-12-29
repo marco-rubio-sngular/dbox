@@ -7,38 +7,45 @@ import {
   Typography,
 } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { fromBase64 } from "js-base64";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { modules } from "../../api/module.ts";
 import HeaderComponent from "../../components/Header.tsx";
+import { themePalette } from "../../config/ThemeConfig.tsx";
 import { ModuleType } from "../../types/ModuleType.ts";
-import { useNavigate } from "react-router-dom";
 
 export const ModulePage: React.FC<object> = () => {
-  const [rows, setRows] = React.useState<ModuleType[] | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(true);
   const navigate = useNavigate();
 
+  const [rows, setRows] = React.useState<ModuleType[] | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(true);
   const columns = React.useMemo<GridColDef<ModuleType>[]>(
     () => [
       {
-        field: "createdAt",
-        headerName: "Created At",
+        field: "title",
+        headerName: "Name",
         flex: 1,
-        type: "dateTime",
+        headerClassName: "super-app-theme--header",
       },
-      { field: "title", headerName: "Module Name", flex: 1 },
-      { field: "description", headerName: "Module Description", flex: 1 },
+      {
+        field: "description",
+        headerName: "Description",
+        flex: 1,
+        headerClassName: "super-app-theme--header",
+      },
       {
         field: "actions",
         type: "actions",
         headerName: "Actions",
+        headerClassName: "super-app-theme--header",
         width: 80,
         getActions: (params) => [
           <GridActionsCellItem
             icon={<RemoveRedEyeSharp />}
             label="Ver"
             title="Ver"
-            onClick={() => navigate(`/modules/${params.id}`)}
+            onClick={() => navigate(`/modules/${params.id}/details`)}
           />,
         ],
       },
@@ -54,7 +61,7 @@ export const ModulePage: React.FC<object> = () => {
       lists.push({
         id: item.id,
         title: item.title,
-        description: item.description,
+        description: fromBase64(item.description).substring(0, 100) + "...",
         createdAt: item.createdAt,
       });
     });
@@ -75,7 +82,7 @@ export const ModulePage: React.FC<object> = () => {
 
   return (
     <Container maxWidth="xl">
-      <HeaderComponent title="IaC" description="modules" />
+      <HeaderComponent title="Modules Common" description="With custom value" />
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <CircularProgress />
@@ -84,18 +91,36 @@ export const ModulePage: React.FC<object> = () => {
         <>
           <div style={{ width: "100%" }}>
             {rows!.length !== 0 ? (
-              <DataGrid
-                autoHeight={true}
-                rows={rows!}
-                columns={columns}
-                density="standard"
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 20 },
+              <Box
+                sx={{
+                  width: "100%",
+                  "& .super-app-theme--header": {
+                    backgroundColor: themePalette.BG_SUCCESS_MAIN,
+                    color: themePalette.SUCCESS_MAIN,
+                    fontWeight: "bold",
                   },
                 }}
-                pageSizeOptions={[10, 20, 50, 100]}
-              />
+              >
+                <DataGrid
+                  autoHeight={true}
+                  rows={rows!}
+                  columns={columns}
+                  density="compact"
+                  disableRowSelectionOnClick
+                  showCellVerticalBorder
+                  showColumnVerticalBorder
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                  sx={{ mb: 2 }}
+                  initialState={{
+                    pagination: {
+                      paginationModel: { page: 0, pageSize: 5 },
+                    },
+                  }}
+                  pageSizeOptions={[5, 10, 20, 50, 100]}
+                />
+              </Box>
             ) : (
               <Box
                 sx={{

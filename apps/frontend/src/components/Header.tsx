@@ -3,7 +3,7 @@ import React from "react";
 
 type HeaderProps = {
   title: string;
-  description: string;
+  description?: string;
   element?: React.ReactNode | null;
 };
 
@@ -18,8 +18,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({
         sx={{
           width: "100%",
           maxHeight: "100px",
-          minHeight: "70px",
-          height: "70px",
+          minHeight: "80px",
+          height: "80px",
         }}
       >
         <Grid
@@ -28,26 +28,38 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           justifyContent="left"
           sx={{ height: "100%" }}
         >
-          <Grid item xs={5}>
+          <Grid item xs={12}>
             <Grid
               container
               direction="column"
               justifyContent="left"
               sx={{ height: "100%", p: 2 }}
             >
-              <Grid item textAlign={"left"}>
+              <Grid item>
                 <Stack direction={"row"} spacing={2}>
-                  <Typography sx={{ mb: 2 }} variant="body1" component="p">
+                  <Typography
+                    variant="h4"
+                    component="p"
+                    color={"primary"}
+                    align="left"
+                    mx={2}
+                  >
                     {title}
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    noWrap
-                    textAlign={"left"}
-                    color={"secondary"}
-                  >
-                    {description}
-                  </Typography>
+                  {description !== undefined && (
+                    <Typography
+                      variant="h4"
+                      component="p"
+                      color={"secondary"}
+                      align="left"
+                      mx={2}
+                      sx={{
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {description}
+                    </Typography>
+                  )}
                 </Stack>
               </Grid>
               {element !== undefined && (

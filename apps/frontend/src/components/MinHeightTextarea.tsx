@@ -55,21 +55,21 @@ export default function MinHeightTextarea({ text }: { text: string }) {
     &:focus-visible {
       outline: 0;
     }
-  `,
+  `
   );
 
   return (
-    <Textarea
-      lang="esES"
-      aria-label="minimum height"
-      readOnly
-      disabled
-      minRows={10}
-      placeholder="Minimum 3 rows"
-      value={text}
-      style={{
-        resize: "none",
-      }}
-    />
+    <>
+      <Textarea
+        name="Description"
+        readOnly={true}
+        placeholder="Description"
+        autoComplete="off"
+        defaultValue={text}
+        sx={{
+          resize: "none",
+        }}
+      />
+    </>
   );
 }

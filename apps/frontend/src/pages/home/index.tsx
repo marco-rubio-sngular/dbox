@@ -1,3 +1,4 @@
+import { EditOutlined, RemoveRedEyeSharp } from "@mui/icons-material";
 import {
   Alert,
   Box,
@@ -5,11 +6,12 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import React from "react";
 import { tags } from "../../api/tag.ts";
 import HeaderComponent from "../../components/Header.tsx";
 import { TagType } from "../../types/TagType.ts";
+import { themePalette } from "../../config/ThemeConfig.tsx";
 
 export const HomePage: React.FC<object> = () => {
   const [rows, setRows] = React.useState<TagType[] | null>(null);
@@ -18,13 +20,32 @@ export const HomePage: React.FC<object> = () => {
   const columns = React.useMemo<GridColDef<TagType>[]>(
     () => [
       {
-        field: "createdAt",
-        headerName: "Created At",
+        field: "title",
+        headerName: "Name",
         flex: 1,
-        type: "dateTime",
+        headerClassName: "super-app-theme--header",
       },
-      { field: "title", headerName: "Tag Name", flex: 1 },
-      { field: "value", headerName: "Tag Value", flex: 1 },
+      {
+        field: "value",
+        headerName: "Value",
+        flex: 1,
+        headerClassName: "super-app-theme--header",
+      },
+      {
+        field: "actions",
+        type: "actions",
+        headerName: "Actions",
+        headerClassName: "super-app-theme--header",
+        width: 80,
+        getActions: () => [
+          <GridActionsCellItem
+            icon={<EditOutlined />}
+            label="Ver"
+            title="Ver"
+            onClick={() => alert(1)}
+          />,
+        ],
+      },
     ],
     []
   );
@@ -58,7 +79,7 @@ export const HomePage: React.FC<object> = () => {
 
   return (
     <Container maxWidth="xl">
-      <HeaderComponent title="" description="tags" />
+      <HeaderComponent title="Tags Common" description="With custom value" />
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <CircularProgress />
@@ -67,18 +88,36 @@ export const HomePage: React.FC<object> = () => {
         <>
           <div style={{ width: "100%" }}>
             {rows!.length !== 0 ? (
-              <DataGrid
-                autoHeight={true}
-                rows={rows!}
-                columns={columns}
-                density="standard"
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 20 },
+              <Box
+                sx={{
+                  width: "100%",
+                  "& .super-app-theme--header": {
+                    backgroundColor: themePalette.BG_SUCCESS_MAIN,
+                    color: themePalette.SUCCESS_MAIN,
+                    fontWeight: "bold",
                   },
                 }}
-                pageSizeOptions={[10, 20, 50, 100]}
-              />
+              >
+                <DataGrid
+                  autoHeight={true}
+                  rows={rows!}
+                  columns={columns}
+                  density="compact"
+                  disableRowSelectionOnClick
+                  showCellVerticalBorder
+                  showColumnVerticalBorder
+                  style={{
+                    borderRadius: "4px",
+                  }}
+                  sx={{ mb: 2 }}
+                  initialState={{
+                    pagination: {
+                      paginationModel: { page: 0, pageSize: 5 },
+                    },
+                  }}
+                  pageSizeOptions={[5, 10, 20, 50, 100]}
+                />
+              </Box>
             ) : (
               <Box
                 sx={{

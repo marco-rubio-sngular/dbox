@@ -3,6 +3,7 @@ import { ApiAction } from '../../Context/Shared/Domain/Action/ApiAction';
 import { ModuleCreateAction } from '../Iac/Module/ModuleCreateAction';
 import { ModuleDeleteAction } from '../Iac/Module/ModuleDeleteAction';
 import { ModuleFileCreateAction } from '../Iac/Module/ModuleFileCreateAction';
+import { ModuleFileGetAction } from '../Iac/Module/ModuleFileGetAction';
 import { ModuleGetAction } from '../Iac/Module/ModuleGetAction';
 import { ModuleListAction } from '../Iac/Module/ModuleListAction';
 import { ModuleListFilesAction } from '../Iac/Module/ModuleListFilesAction';
@@ -32,6 +33,14 @@ export const register = (router: Router) => {
         '/api/v1/iac/modules/:moduleId/files',
         (req: Request, res: Response) => {
             const feature: ApiAction = new ModuleListFilesAction();
+            feature.execute(req, res);
+        }
+    );
+
+    router.get(
+        '/api/v1/iac/modules/:moduleId/files/:fileId',
+        (req: Request, res: Response) => {
+            const feature: ApiAction = new ModuleFileGetAction();
             feature.execute(req, res);
         }
     );

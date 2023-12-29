@@ -8,10 +8,12 @@ export const getModuleFileUrl = (
 ): string => {
     let path = (req.route.path as string)
         .replace(':moduleId', moduleId)
-        .replace(':moduleFileId', moduleFileId);
+        .replace(':fileId', moduleFileId);
     if (path.includes(moduleFileId) === false) {
         path += `/${moduleFileId}`;
     }
 
-    return new URL(`${req.protocol}://${req.get('host')}`).toString();
+    return new URL(
+        `${req.protocol}://${req.get('host')}/${path}/content`
+    ).toString();
 };
