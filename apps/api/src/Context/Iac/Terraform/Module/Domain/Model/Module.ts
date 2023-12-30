@@ -1,18 +1,18 @@
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../../Shared/Domain/ValueObject/TitleBase64';
 
 class Module {
     private constructor(
         public readonly id: Id,
-        public readonly title: Title,
+        public readonly title: TitleBase64,
         public readonly description: Description,
         public readonly createdAt: Date
     ) {}
 
     public static create(
         id: Id,
-        title: Title,
+        title: TitleBase64,
         description: Description,
         createdAt?: Date
     ): Module {
@@ -29,7 +29,7 @@ class Module {
         title: string;
         description: string;
         createdAt: Date;
-        } {
+    } {
         return {
             id: this.id.value,
             title: this.title.value,

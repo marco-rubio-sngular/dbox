@@ -60,7 +60,7 @@ export const ModulePage: React.FC<object> = () => {
     collection.forEach((item) => {
       lists.push({
         id: item.id,
-        title: item.title,
+        title: fromBase64(item.title),
         description: fromBase64(item.description).substring(0, 100) + "...",
         createdAt: item.createdAt,
       });

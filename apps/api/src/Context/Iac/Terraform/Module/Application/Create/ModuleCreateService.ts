@@ -1,6 +1,6 @@
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../../Shared/Domain/ValueObject/TitleBase64';
 import Module from '../../Domain/Model/Module';
 import ModuleRepository from '../../Domain/Persistence/ModuleRepository';
 import ModuleCreateRequest from './ModuleCreateRequest';
@@ -20,7 +20,7 @@ class ModuleCreateService {
     private createModuleFromRequest(request: ModuleCreateRequest): Module {
         return Module.create(
             new Id(request.id),
-            new Title(request.title),
+            new TitleBase64(request.title),
             new Description(request.description)
         );
     }

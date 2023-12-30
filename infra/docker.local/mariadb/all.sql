@@ -34,7 +34,7 @@ CREATE TABLE
   `modules` (
     `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
-    `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module short title',
+    `title` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module title',
     `description` TEXT COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module description',
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'modules';
@@ -45,7 +45,7 @@ CREATE TABLE
     `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `moduleId` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Relation Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
-    `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module short title',
+    `title` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module title',
     `filename` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module main file,including examples',
     `description` TEXT COLLATE utf8_unicode_ci NOT NULL COMMENT 'Module file description',
     PRIMARY KEY (`id`),
@@ -58,8 +58,8 @@ CREATE TABLE
   `faqs` (
     `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL UNIQUE COMMENT 'Primary Key',
     `createdAt` datetime DEFAULT NULL COMMENT 'Create Time',
-    `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq short title',
-    `solution` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq long Solution',
+    `title` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq  title',
+    `solution` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Faq  Solution',
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci COMMENT = 'faqs';
 

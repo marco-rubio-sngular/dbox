@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import ModuleCreateRequest from '../../../Context/Iac/Terraform/Module/Application/Create/ModuleCreateRequest';
+import ModuleCreateResponse from '../../../Context/Iac/Terraform/Module/Application/Create/ModuleCreateResponse';
 import ModuleCreateService from '../../../Context/Iac/Terraform/Module/Application/Create/ModuleCreateService';
 import ModuleRepository from '../../../Context/Iac/Terraform/Module/Domain/Persistence/ModuleRepository';
 import ModuleRepositoryMariaDB from '../../../Context/Iac/Terraform/Module/Infraestructure/Persistence/ModuleRepositoryMariaDB';
@@ -23,12 +24,10 @@ export class ModuleCreateAction extends BaseApiAction implements ApiAction {
                 req.body.description
             );
 
-            await service.execute(request);
+            const response: ModuleCreateResponse =
+                await service.execute(request);
 
-            this.success(res, {
-                ...request,
-                description: this.decode(request.description),
-            });
+            this.success(res, response);
         } catch (error) {
             this.failed(res, <Error>error);
         }

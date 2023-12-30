@@ -1,13 +1,13 @@
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../../Shared/Domain/ValueObject/TitleBase64';
 
 class ModuleFile {
     private constructor(
         public readonly id: Id,
         public readonly moduleId: Id,
-        public readonly title: Title,
+        public readonly title: TitleBase64,
         public readonly description: Description,
         public readonly filename: FileName,
         public readonly createdAt: Date
@@ -16,7 +16,7 @@ class ModuleFile {
     public static create(
         id: Id,
         moduleId: Id,
-        title: Title,
+        title: TitleBase64,
         description: Description,
         filename: FileName,
         createdAt?: Date
@@ -43,7 +43,7 @@ class ModuleFile {
         description: string;
         filename: string;
         createdAt: Date;
-        } {
+    } {
         return {
             id: this.id.value,
             moduleId: this.moduleId.value,

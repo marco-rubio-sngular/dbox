@@ -14,3 +14,5 @@ d:
 	terraform destroy
 da:
 	terraform destroy --auto-approve
+output:
+	terraform output

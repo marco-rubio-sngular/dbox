@@ -1,0 +1,22 @@
+function createRandomBase64Text() {
+    let randomString = pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    randomString += "\n\n" + pm.variables.replaceIn("{{$randomLoremParagraphs}}");
+    return btoa(randomString);
+  }
+  
+  // Generate a random string and store it in a variable
+  pm.variables.set("base64Text", createRandomBase64Text());
+  
+  
+  function createRandomBase64Title() {
+    let randomString = pm.variables.replaceIn("{{$randomPhrase}}");
+    return btoa(randomString);
+  }
+  
+  // Generate a random string and store it in a variable
+  pm.variables.set("base64Title", createRandomBase64Title());

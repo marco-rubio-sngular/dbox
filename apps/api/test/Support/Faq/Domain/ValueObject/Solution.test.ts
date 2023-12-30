@@ -1,10 +1,10 @@
-import Solution from '../../../../../src/Context/Support/Faq/Domain/ValueObject/Solution';
-import FaqMother from '../../../FaqMother';
+import { SharedMother } from '../../../../Shared/SharedMother';
+import FaqMother from '../../FaqMother';
 
 describe('Solution', () => {
-    it(`should create with valid value, min length ${Solution.MINIMUM_LENGTH}`, () => {
+    it(`should create with valid value,base64`, () => {
         expect(FaqMother.Solution().value).toStrictEqual(
-            FaqMother.FAQ_SOLUTION
+            SharedMother.LONG_TEXT_BASE64_VALUE
         );
     });
 });

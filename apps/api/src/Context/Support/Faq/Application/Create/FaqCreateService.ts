@@ -1,5 +1,5 @@
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../Shared/Domain/ValueObject/TitleBase64';
 import Faq from '../../Domain/Model/Faq';
 import FaqRepository from '../../Domain/Persistence/FaqRepository';
 import Solution from '../../Domain/ValueObject/Solution';
@@ -20,7 +20,7 @@ class FaqCreateService {
     private createFaqFromRequest(request: FaqCreateRequest): Faq {
         return Faq.create(
             new Id(request.id),
-            new Title(request.title),
+            new TitleBase64(request.title),
             new Solution(request.solution)
         );
     }

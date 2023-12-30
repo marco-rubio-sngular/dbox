@@ -1,12 +1,3 @@
-provider "aws" {
-  profile = var.aws_profile
-  region  = var.aws_region
-
-  default_tags {
-    tags = merge(var.common_tags, { "Environment" = var.environment })
-  }
-}
-
 module "aws_ec2" {
   source             = "../"
   how_many_instances = var.how_many_instances

@@ -1,7 +1,8 @@
 import FaqCreateRequest from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateRequest';
 import FaqCreateResponse from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateResponse';
 import FaqCreateService from '../../../../../src/Context/Support/Faq/Application/Create/FaqCreateService';
-import FaqMother from '../../../FaqMother';
+import { SharedMother } from '../../../../Shared/SharedMother';
+import FaqMother from '../../FaqMother';
 import FaqRepositoryForTest from '../FaqRepositoryForTest';
 
 const respository: FaqRepositoryForTest = new FaqRepositoryForTest();
@@ -9,15 +10,15 @@ const request: FaqCreateRequest = FaqMother.FaqCreateRequest();
 const sut: FaqCreateService = FaqMother.FaqCreateService(respository);
 
 describe('FaqCreateService', () => {
-    it('shoud create a faq', async() => {
+    it('shoud create a faq', async () => {
         await sut.execute(request);
 
         expect(respository.createdCalled).toBeTruthy();
     });
 
-    it('shoud result a response with create faq id', async() => {
+    it('shoud result a response with create faq id', async () => {
         const result: FaqCreateResponse = await sut.execute(request);
 
-        expect(result.id).toStrictEqual(FaqMother.FAQ_ID);
+        expect(result.id).toStrictEqual(SharedMother.ID_VALUE);
     });
 });

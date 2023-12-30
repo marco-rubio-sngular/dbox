@@ -36,12 +36,16 @@ function Row({ faq }: { faq: FaqType }) {
           {faq.id}
         </TableCell>
         <TableCell align="left">{faq.createdAt.toString()}</TableCell>
-        <TableCell align="left">{faq.title}</TableCell>
+        <TableCell align="left">{fromBase64(faq.title)}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
           <Collapse in={open} timeout="auto" unmountOnExit easing={"easing"}>
-            <SyntaxHighlighter language="markdown" style={stackoverflowDark}>
+            <SyntaxHighlighter
+              language="markdown"
+              style={stackoverflowDark}
+              wrapLongLines
+            >
               {fromBase64(faq.solution)}
             </SyntaxHighlighter>
           </Collapse>

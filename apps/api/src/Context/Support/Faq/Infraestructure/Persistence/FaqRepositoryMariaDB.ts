@@ -2,7 +2,7 @@ import mariadb from 'mariadb';
 import InternalException from '../../../../Shared/Domain/Exception/InternalException';
 import NotFoundException from '../../../../Shared/Domain/Exception/NotFoundException';
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../Shared/Domain/ValueObject/TitleBase64';
 import Faq from '../../Domain/Model/Faq';
 import FaqRepository from '../../Domain/Persistence/FaqRepository';
 import Solution from '../../Domain/ValueObject/Solution';
@@ -63,7 +63,7 @@ class FaqRepositoryMariaDB implements FaqRepository {
             );
             return Faq.create(
                 new Id(result.id),
-                new Title(result.title),
+                new TitleBase64(result.title),
                 new Solution(result.solution),
                 new Date(result.createdAt)
             );
@@ -101,7 +101,7 @@ class FaqRepositoryMariaDB implements FaqRepository {
                     result.push(
                         Faq.create(
                             new Id(item.id),
-                            new Title(item.title),
+                            new TitleBase64(item.title),
                             new Solution(item.solution),
                             new Date(item.createdAt)
                         )

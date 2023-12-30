@@ -5,7 +5,8 @@ import FaqCreateService from '../../../../../src/Context/Support/Faq/Application
 import Faq from '../../../../../src/Context/Support/Faq/Domain/Model/Faq';
 import FaqRepository from '../../../../../src/Context/Support/Faq/Domain/Persistence/FaqRepository';
 import FaqRepositoryMariaDB from '../../../../../src/Context/Support/Faq/Infraestructure/Persistence/FaqRepositoryMariaDB';
-import FaqMother from '../../../FaqMother';
+import { SharedMother } from '../../../../Shared/SharedMother';
+import FaqMother from '../../FaqMother';
 
 const faqs: FaqRepository = new FaqRepositoryMariaDB();
 const creator: FaqCreateService = FaqMother.FaqCreateService(faqs);
@@ -13,7 +14,7 @@ const createRequest: FaqCreateRequest = FaqMother.FaqCreateRequest();
 
 describe('FaqCreateService', () => {
     it('shoud create a faq', () => {
-        expect(async() => {
+        expect(async () => {
             await creator.execute(createRequest);
 
             await faqs.delete(new Id(createRequest.id));
@@ -21,19 +22,19 @@ describe('FaqCreateService', () => {
     });
 
     it('shoud get an existing faq', () => {
-        expect(async() => {
+        expect(async () => {
             await creator.execute(createRequest);
 
             const faq: Faq = await faqs.get(new Id(createRequest.id));
 
-            expect(FaqMother.FAQ_ID).toStrictEqual(faq.id.value);
+            expect(SharedMother.ID_VALUE).toStrictEqual(faq.id.value);
 
             await faqs.delete(new Id(createRequest.id));
         });
     });
 
     it('shoud delete an existing faq', () => {
-        async() => {
+        async () => {
             await creator.execute(createRequest);
             await faqs.delete(new Id(createRequest.id));
 
@@ -46,12 +47,12 @@ describe('FaqCreateService', () => {
     });
 
     it('shoud list faqs without pattern', () => {
-        expect(async() => {
+        expect(async () => {
             await creator.execute(createRequest);
 
             const faq: Faq = await faqs.get(new Id(createRequest.id));
 
-            expect(FaqMother.FAQ_ID).toStrictEqual(faq.id.value);
+            expect(SharedMother.ID_VALUE).toStrictEqual(faq.id.value);
 
             await faqs.delete(new Id(createRequest.id));
         });

@@ -1,7 +1,7 @@
 import Id from '../../../../src/Context/Shared/Domain/ValueObject/Id';
 import Faq from '../../../../src/Context/Support/Faq/Domain/Model/Faq';
 import FaqRepository from '../../../../src/Context/Support/Faq/Domain/Persistence/FaqRepository';
-import FaqMother from '../../FaqMother';
+import FaqMother from '../FaqMother';
 
 class FaqRepositoryForTest implements FaqRepository {
     async list(pattern?: string | undefined): Promise<Faq[]> {

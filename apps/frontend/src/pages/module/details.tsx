@@ -1,13 +1,13 @@
 import { ChevronRightOutlined, ExpandMoreOutlined } from "@mui/icons-material";
 import { Box, CircularProgress, Container, Grid } from "@mui/material";
 import { TreeItem, TreeView } from "@mui/x-tree-view";
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { stackoverflowDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { modules } from "../../api/module";
-import HeaderComponent from "../../components/Header";
 import { ModuleType } from "../../types/ModuleType";
+import HeaderComponent from "../../components/Header";
 
 const ModuleDetailPage: React.FC = () => {
   const { moduleId } = useParams<string>();
@@ -28,7 +28,7 @@ const ModuleDetailPage: React.FC = () => {
   }, [moduleId]);
 
   const handleSelect = async (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     nodeIds: string
   ): Promise<void> => {
     if (nodeIds.startsWith("node")) {
@@ -108,6 +108,7 @@ const ModuleDetailPage: React.FC = () => {
                     textAlign: "left",
                   }}
                   language="markown"
+                  wrapLongLines
                   style={stackoverflowDark}
                 >
                   {fileContent}

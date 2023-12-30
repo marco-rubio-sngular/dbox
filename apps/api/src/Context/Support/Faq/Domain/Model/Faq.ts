@@ -1,18 +1,18 @@
 import Id from '../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../Shared/Domain/ValueObject/TitleBase64';
 import Solution from '../ValueObject/Solution';
 
 class Faq {
     private constructor(
         public readonly id: Id,
-        public readonly title: Title,
+        public readonly title: TitleBase64,
         public readonly solution: Solution,
         public readonly createdAt: Date
     ) {}
 
     public static create(
         id: Id,
-        title: Title,
+        title: TitleBase64,
         solution: Solution,
         createdAt?: Date
     ): Faq {
@@ -29,7 +29,7 @@ class Faq {
         title: string;
         solution: string;
         createdAt: Date;
-        } {
+    } {
         return {
             id: this.id.value,
             title: this.title.value,

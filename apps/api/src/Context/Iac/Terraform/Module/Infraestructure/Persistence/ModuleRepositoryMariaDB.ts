@@ -4,7 +4,7 @@ import NotFoundException from '../../../../../Shared/Domain/Exception/NotFoundEx
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../../Shared/Domain/ValueObject/TitleBase64';
 import Module from '../../Domain/Model/Module';
 import ModuleFile from '../../Domain/Model/ModuleFile';
 import ModuleRepository from '../../Domain/Persistence/ModuleRepository';
@@ -113,7 +113,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
 
             return Module.create(
                 new Id(result[0].id),
-                new Title(result[0].title),
+                new TitleBase64(result[0].title),
                 new Description(result[0].description),
                 new Date(result[0].createdAt)
             );
@@ -134,7 +134,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
             return ModuleFile.create(
                 new Id(result[0].id),
                 new Id(result[0].moduleId),
-                new Title(result[0].title),
+                new TitleBase64(result[0].title),
                 new Description(result[0].description),
                 new FileName(result[0].filename),
                 new Date(result[0].createdAt)
@@ -175,7 +175,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                     result.push(
                         Module.create(
                             new Id(item.id),
-                            new Title(item.title),
+                            new TitleBase64(item.title),
                             new Description(item.description),
                             new Date(item.createdAt)
                         )
@@ -227,7 +227,7 @@ class ModuleRepositoryMariaDB implements ModuleRepository {
                         ModuleFile.create(
                             new Id(item.id),
                             new Id(item.moduleId),
-                            new Title(item.title),
+                            new TitleBase64(item.title),
                             new Description(item.description),
                             new FileName(item.filename),
                             new Date(item.createdAt)
