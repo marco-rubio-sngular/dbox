@@ -9,17 +9,31 @@ terraform {
   }
 }
 
-resource "aws_instance" "example" {
+provider "aws" {
+  profile = var.aws_profile
+  region  = var.aws_region
+
+  default_tags {
+    tags = merge(var.common_tags, { "Environment" = var.environment })
+  }
+}
+
+resource "aws_instance" "this" {
   count                  = var.how_many_instances
   ami                    = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.instance.id]
 
+  tags = {
+    "Name" = format("%s-%s-%02d", var.project_name, var.environment, count.index + 1)
+  }
+
   user_data = <<EOF
 #!/bin/bash
-# This code block creates an index.html file with the content "Hello, World!"
-echo "Hello, World!" > index.html
-nohup busybox httpd -f -p 80 &
+sudo apt update && apt install -y apache2
+sudo echo "Hello, World from ${count.index}!" > /var/www/html/index.html
+sudo echo "Hello, World from ${count.index}!" > index.html
+sudo service apache2 restart
 EOF
 }
 
@@ -27,6 +41,12 @@ resource "aws_security_group" "instance" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

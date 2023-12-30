@@ -1,3 +1,13 @@
+variable "aws_profile" {
+  description = "AWS profile to use"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "AWS region to use"
+  type        = string
+}
+
 variable "how_many_instances" {
   description = "How many instances of EC2 will be created"
   type        = number
@@ -52,8 +62,7 @@ variable "environment" {
 variable "common_tags" {
   description = "Common tags for all resources"
   type = object({
-    Environment = string
-    Project     = string
-    CreatedBy   = string
+    Project   = string
+    CreatedBy = string
   })
 }

@@ -14,3 +14,5 @@ d:
 	terraform destroy
 da:
 	terraform destroy --auto-approve
+docs:
+	terraform-docs markdown table  --output-file=README.md .
