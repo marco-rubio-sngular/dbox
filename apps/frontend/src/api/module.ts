@@ -10,9 +10,6 @@ export const modules = {
     const payload = {
       title: await this.encode(request.title),
       description: await this.encode(request.description),
-      module_main: await this.encode(request.module_main),
-      module_variables: await this.encode(request.module_variables),
-      module_outputs: await this.encode(request.module_outputs),
     };
 
     try {
