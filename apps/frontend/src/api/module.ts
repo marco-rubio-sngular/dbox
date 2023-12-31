@@ -1,7 +1,28 @@
+import { AxiosResponse } from "axios";
+import { ModuleCreateType } from "../types/ModuleCreateType.ts";
 import { ModuleType } from "../types/ModuleType.ts";
 import { instance } from "./base.api.ts";
 
 export const modules = {
+  moduleCreate: async function (
+    request: ModuleCreateType
+  ): Promise<AxiosResponse | void> {
+    const payload = {
+      title: await this.encode(request.title),
+      description: await this.encode(request.description),
+      module_main: await this.encode(request.module_main),
+      module_variables: await this.encode(request.module_variables),
+      module_outputs: await this.encode(request.module_outputs),
+    };
+
+    try {
+      const response = await instance.post("/iac/modules", payload);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   getAll: async function (): Promise<ModuleType[]> {
     const collection = await instance.get("/iac/modules", {
       params: {},

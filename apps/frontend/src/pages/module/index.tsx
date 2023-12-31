@@ -2,6 +2,7 @@ import { RemoveRedEyeSharp } from "@mui/icons-material";
 import {
   Alert,
   Box,
+  Button,
   CircularProgress,
   Container,
   Typography,
@@ -82,7 +83,11 @@ export const ModulePage: React.FC<object> = () => {
 
   return (
     <Container maxWidth="xl">
-      <HeaderComponent title="Modules Common" description="With custom value" />
+      <HeaderComponent
+        title="Modules Common"
+        description="With custom value"
+        element={<Button href="/modules/create">NEW</Button>}
+      />
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <CircularProgress />

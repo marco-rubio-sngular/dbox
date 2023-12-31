@@ -48,25 +48,22 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                   </Typography>
                   {description !== undefined && (
                     <Typography
-                      variant="h4"
-                      component="p"
                       color={"secondary"}
-                      align="left"
-                      mx={2}
-                      sx={{
-                        fontStyle: "italic",
-                      }}
+                      style={{ marginTop: "auto" }}
                     >
                       {description}
                     </Typography>
                   )}
+                  {element !== undefined && element !== null ? (
+                    <>
+                      <Divider orientation="vertical" flexItem />
+                      <Typography color={"primary"} border={1}>
+                        {element}
+                      </Typography>
+                    </>
+                  ) : null}
                 </Stack>
               </Grid>
-              {element !== undefined && (
-                <Grid sx={{ mt: 4, width: "100%" }} item>
-                  {element}
-                </Grid>
-              )}
             </Grid>
           </Grid>
         </Grid>
