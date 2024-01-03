@@ -1,0 +1,25 @@
+- dar la opcion de crar VPC o que nos la pasen
+- dar la opcion de crar las subnets VPC o que nos la pasen
+- directorio environment como el original e implementarlo ya
+- atencion con las amis - NOS PASAN SOLO 1
+- el make debe poder importar recursos
+
+================================================================
+TECNICAL DEBTH
+================================================================
+
+- al modulo principal que esta en modules llamlo main venga
+- refactor
+- semantica
+- documentacion al tener la primera release aprovada
+- definicion DSL propio - mismo para json y yaml, con la primera version aprobada
+
+================================================================
+TODO
+================================================================
+
+- informe de prevision de costo de la infraestructura
+- informes de seguridad (tfsec/linter)
+- testing ver que aporta ya aplicarlo en caso necesario
+- alertas
+- monitoring

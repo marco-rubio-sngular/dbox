@@ -1,0 +1,59 @@
+.env.backend
+**/.env.backend
+.env*
+deploy.env
+backend.conf
+*.tfplan
+./tmp
+
+# general gitkeep
+!/**/.gitkeep
+
+# Local .terraform directories
+**/.terraform/*
+.terraform/*
+./terraform/.terraform.lock.hcl
+./terraform/backend.conf
+./terraform/backend/.terraform.lock.hcl
+./terraform/terraform.tfplan
+./terraform/backend/terraform.tfplan
+*.tfstate
+*.tfstate.*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.run
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+# apple
+**/.DS_Store
+.DS_Store
+
+
+
+.terraform*
+**/.env
+**/.env
+**/.terraform*
