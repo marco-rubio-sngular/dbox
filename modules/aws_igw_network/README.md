@@ -20,6 +20,13 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_eip.nat_eip](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/eip) | resource |
+| [aws_internet_gateway.this](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/internet_gateway) | resource |
+| [aws_nat_gateway.nat](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/nat_gateway) | resource |
+| [aws_route.private_internet_gateway](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/route) | resource |
+| [aws_route.public_internet_gateway](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/route) | resource |
+| [aws_route_table.private](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/route_table) | resource |
+| [aws_route_table.public](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/route_table) | resource |
 | [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/subnet) | resource |
 | [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/subnet) | resource |
 | [aws_vpc.this](https://registry.terraform.io/providers/hashicorp/aws/5.24.0/docs/resources/vpc) | resource |
@@ -43,6 +50,9 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_igw_arn"></a> [igw\_arn](#output\_igw\_arn) | Internet Gateway ARN |
+| <a name="output_igw_id"></a> [igw\_id](#output\_igw\_id) | Internet Gateway ID |
+| <a name="output_nat_eip"></a> [nat\_eip](#output\_nat\_eip) | NAT Elastic IP |
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | Private Subnets Outputs for network, cidr\_block, and ids |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | Public Subnets Outputs for network, cidr\_block, and ids |
 | <a name="output_vpc_cdir_blocks"></a> [vpc\_cdir\_blocks](#output\_vpc\_cdir\_blocks) | VPC Outputs for network, cidr\_block |

@@ -17,3 +17,8 @@ output "private_subnets" {
   description = "Private Subnets Outputs for network, cidr_block, and ids"
   value       = module.aws_basic_network.private_subnets
 }
+
+output "nat_eip" {
+  description = "NAT Elastic IP"
+  value       = module.aws_basic_network.nat_eip
+}
