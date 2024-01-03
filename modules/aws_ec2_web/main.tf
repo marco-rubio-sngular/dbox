@@ -25,13 +25,15 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = [aws_security_group.instance.id]
 
   tags = {
-    "Name" = format("%s-%s-%02d", var.project_name, var.environment, count.index + 1)
+    "Name" = "Instance-EC2-${var.environment}-${var.project_name}"
   }
 
   user_data = var.user_data_filepath
 }
 
 resource "aws_security_group" "instance" {
+  name_prefix = "Security-Group-Web-SSH-${var.environment}-${var.project_name}"
+
   ingress {
     from_port   = 80
     to_port     = 80

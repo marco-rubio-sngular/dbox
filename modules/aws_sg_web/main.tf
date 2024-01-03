@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "this" {
-  name = "Security-Group-Web-SSH-${var.environment}-${var.project_name}"
+  name_prefix = "Security-Group-Web-SSH-${var.environment}-${var.project_name}"
   ingress {
     from_port   = 80
     to_port     = 80
