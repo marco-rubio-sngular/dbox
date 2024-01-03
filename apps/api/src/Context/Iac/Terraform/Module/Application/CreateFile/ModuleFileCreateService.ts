@@ -2,7 +2,7 @@ import Base64ImageWriter from '../../../../../Shared/Domain/Lib/Base64ImageWrite
 import Description from '../../../../../Shared/Domain/ValueObject/Description';
 import FileName from '../../../../../Shared/Domain/ValueObject/FileName';
 import Id from '../../../../../Shared/Domain/ValueObject/Id';
-import Title from '../../../../../Shared/Domain/ValueObject/Title';
+import TitleBase64 from '../../../../../Shared/Domain/ValueObject/TitleBase64';
 import ModuleFile from '../../Domain/Model/ModuleFile';
 import ModuleRepository from '../../Domain/Persistence/ModuleRepository';
 import ModuleFileCreateRequest from './ModuleFileCreateRequest';
@@ -39,7 +39,7 @@ class ModuleFileCreateService {
         return ModuleFile.create(
             new Id(request.id),
             new Id(request.moduleId),
-            new Title(request.title),
+            new TitleBase64(request.title),
             new Description(request.description),
             new FileName(request.filename)
         );
