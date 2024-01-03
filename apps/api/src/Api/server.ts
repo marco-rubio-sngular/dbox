@@ -27,7 +27,7 @@ export class Server {
         const router = Router();
         this.express.use(router);
         this.express.use(errorHandler());
-        this.express.on('error', function (e) {
+        this.express.on('error', function(e) {
             console.error('');
             console.error('----- startof.ERROR ON EXPRESS SERVER -----');
             console.error(e);

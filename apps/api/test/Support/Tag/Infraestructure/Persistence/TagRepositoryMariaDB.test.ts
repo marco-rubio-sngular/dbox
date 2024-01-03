@@ -14,7 +14,7 @@ const createRequest: TagCreateRequest = TagMother.TagCreateRequest();
 
 describe('TagCreateService', () => {
     it('shoud create a tag', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             await tags.delete(new Id(createRequest.id));
@@ -22,7 +22,7 @@ describe('TagCreateService', () => {
     });
 
     it('shoud get an existing tag', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             const tag: Tag = await tags.get(new Id(createRequest.id));
@@ -34,7 +34,7 @@ describe('TagCreateService', () => {
     });
 
     it('shoud delete an existing tag', () => {
-        async () => {
+        async() => {
             await creator.execute(createRequest);
             await tags.delete(new Id(createRequest.id));
 
@@ -47,7 +47,7 @@ describe('TagCreateService', () => {
     });
 
     it('shoud list tags without pattern', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             const tag: Tag = await tags.get(new Id(createRequest.id));
