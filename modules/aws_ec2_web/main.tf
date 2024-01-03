@@ -19,8 +19,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "this" {
-  count                  = var.how_many_instances
-  ami                    = var.ami
+  count                  = var.how_many
+  ami                    = var.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.instance.id]
 
@@ -28,19 +28,19 @@ resource "aws_instance" "this" {
     "Name" = format("%s-%s-%02d", var.project_name, var.environment, count.index + 1)
   }
 
-  user_data = <<EOF
-#!/bin/bash
-sudo apt update && apt install -y apache2
-sudo echo "Hello, World from ${count.index}!" > /var/www/html/index.html
-sudo echo "Hello, World from ${count.index}!" > index.html
-sudo service apache2 restart
-EOF
+  user_data = var.user_data_filepath
 }
 
 resource "aws_security_group" "instance" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

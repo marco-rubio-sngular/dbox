@@ -1,3 +1,6 @@
+#:{'..'}>----------------------------------------------
+#:{'..'}> basic required variables
+#:{'..'}>----------------------------------------------
 variable "aws_profile" {
   description = "AWS profile to use"
   type        = string
@@ -5,16 +8,6 @@ variable "aws_profile" {
 
 variable "aws_region" {
   description = "AWS region to use"
-  type        = string
-}
-
-variable "how_many_instances" {
-  description = "How many instances of EC2 will be created"
-  type        = number
-}
-
-variable "instance_type" {
-  description = "Type of the EC2 instance"
   type        = string
 }
 
@@ -59,4 +52,29 @@ variable "common_tags" {
     Project   = string
     CreatedBy = string
   })
+}
+#:{'..'}>----------------------------------------------
+
+
+#:{'..'}>----------------------------------------------
+#:{'..'}> other variables and settings
+#:{'..'}>----------------------------------------------
+variable "user_data_filepath" {
+  type        = string
+  description = "where is the user_data file path"
+}
+
+variable "image_id" {
+  description = "Image id for aws launch template"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "EC2 Instance Type - DEFAULT t2.micro"
+  type        = string
+}
+
+variable "how_many" {
+  description = "How many instances to create"
+  type        = number
 }

@@ -4,7 +4,7 @@
       "path": "../.."
     },
     {
-      "path": "../../../../msc/terraform-msc-2024"
+      "path": "../../../balanced-deployment"
     }
   ],
   "settings": {}
