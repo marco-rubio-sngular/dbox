@@ -13,14 +13,14 @@ terraform {
   }
 
   backend "s3" {
-    profile = local.environment_data.AWS_PROFILE
-    region  = local.environment_data.AWS_REGION
+    profile = local.environment_data.profile
+    region  = local.environment_data.region
   }
 }
 
 provider "aws" {
-  region  = local.environment_data.AWS_REGION
-  profile = local.environment_data.AWS_PROFILE
+  region  = local.environment_data.region
+  profile = local.environment_data.profile
 }
 
 locals {

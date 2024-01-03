@@ -28,7 +28,7 @@ backend-uninstall:
 	
 #> general
 init:
-	docker run --rm -v $(PWD):/terraform terraform.docker init -var-file=environments/test.tfvars  -backend-config=.env.backend
+	docker run --rm -v $(PWD):/terraform terraform.docker init -var-file=environments/test.tfvars  -backend-config=.env
 plan:
 	docker run --rm -v $(PWD):/terraform terraform.docker plan -var-file=environments/test.tfvars
 apply:

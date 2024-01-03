@@ -111,36 +111,12 @@ nano .env
 y ponemos los valores de AWS que sean del proyecto
 
 ```
-AWS_ACCESS_KEY=xxxxx
-AWS_SECRET_ACCESS_KEY=xxxxx
-AWS_REGION=eu-west-1
-ENVIRONMENT=dev
-
-```
-
-Lo segundo que vamos a hacer en el proyecto sera copiar el fichero
-template dot.env.backend como .env.backend
-
-```
-
-cp -a dot.env.backend .env.backend
-nano .env.backend
-
-```
-
-y ponemos los valores de AWS que sean del proyecto
-
-&nbsp;
-
-```
-access_key          = "xxxxxxxxxxxxxxxx"
-secret_key          = "xxxxxxxxxxxxxxxx"
 region              = "eu-west-1"
+profile             " "xxxxxxxxx"
 bucket              = "backend-s3-bucket-id-terraform.state"
 key                 = "balanced-deployment/terraform/states"
 encrypt             = true
 dynamodb_table      = "backend_dynamodb_table_terraform_lock"
-
 ```
 
 &nbsp;
