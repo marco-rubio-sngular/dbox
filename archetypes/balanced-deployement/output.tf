@@ -7,38 +7,40 @@ output "ami_green" {
   value = var.aws_ami_green
 }
 output "vpc_id" {
-  description = "VPC Outputs for network, ids"
-  value       = module.aws_igw_network.vpc_id
+  value = module.aws_igw_network.vpc_id
 }
 
 output "vpc_cdir_blocks" {
-  description = "VPC Outputs for network, cidr_block"
-  value       = module.aws_igw_network.vpc_cdir_blocks
+  value = module.aws_igw_network.vpc_cdir_blocks
 }
 
 output "public_subnets" {
-  description = "Public Subnets Outputs for network, cidr_block, and ids"
-  value       = { for subnet in module.aws_igw_network.public_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
+  value = { for subnet in module.aws_igw_network.public_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
 }
 
 output "private_subnets" {
-  description = "Private Subnets Outputs for network, cidr_block, and ids"
-  value       = { for subnet in module.aws_igw_network.private_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
+  value = { for subnet in module.aws_igw_network.private_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
 }
 
+output "private_subnets_ids" {
+  value = module.aws_igw_network.private_subnets_ids
+}
+
+output "public_subnets_ids" {
+  value = module.aws_igw_network.public_subnets_ids
+}
+
+
 output "igw_arn" {
-  description = "Internet Gateway ARN"
-  value       = module.aws_igw_network.igw_arn
+  value = module.aws_igw_network.igw_arn
 }
 
 output "igw_id" {
-  description = "Internet Gateway ID"
-  value       = module.aws_igw_network.igw_id
+  value = module.aws_igw_network.igw_id
 }
 
 output "nat_eip" {
-  description = "NAT Elastic IP"
-  value       = module.aws_igw_network.nat_eip
+  value = module.aws_igw_network.nat_eip
 }
 #:{.".}> ------------------------------------------------------------------------------
 output "aws_group_id" {

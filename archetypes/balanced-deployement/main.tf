@@ -50,7 +50,7 @@ module "aws_lb_blue_green" {
   environment          = var.environment
   company_name         = var.company_name
   vpc_id               = module.aws_igw_network.vpc_id
-  subnets_ids          = module.aws_igw_network.public_subnets[*].id
+  subnets_ids          = module.aws_igw_network.public_subnets_ids
   security_groups_ids  = toset([module.aws_sg_web.aws_group_id])
   traffic_dist_map     = var.traffic_distribution_map
   traffic_distribution = var.traffic_distribution
@@ -71,6 +71,6 @@ module "aws_asg" {
   image_id            = var.image_id
   instance_type       = var.instance_type
   security_groups_ids = toset([module.aws_sg_web.aws_group_id])
-  subnets_ids         = module.aws_igw_network.public_subnets[*].id
+  subnets_ids         = module.aws_igw_network.public_subnets_ids
   target_group_arns   = toset([module.aws_lb_blue_green.aws_lb_target_group_blue_arn, module.aws_lb_blue_green.aws_lb_target_group_green_arn])
 }
