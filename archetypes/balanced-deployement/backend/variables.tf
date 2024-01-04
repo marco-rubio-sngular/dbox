@@ -68,3 +68,21 @@ variable "dynamodb_table" {
   description = "Name of database for bucket store"
   type        = string
 }
+
+variable "aws_ami_blue" {
+  description = "To Avoid warnings :("
+  type        = string
+  nullable    = true
+}
+
+variable "aws_ami_green" {
+  description = "To Avoid warnings :("
+  type        = string
+  nullable    = true
+}
+
+variable "instance_type" {
+  description = "To Avoid warnings :("
+  type        = string
+  nullable    = true
+}

@@ -1,0 +1,6 @@
+environment   = "test"
+aws_region    = "eu-west-1"
+aws_profile   = "belike-markitos"
+aws_ami_green = "ami-0b988356a882455ca"
+aws_ami_blue  = "ami-0b988356a882455ca"
+instance_type = "t3.micro"

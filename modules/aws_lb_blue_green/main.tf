@@ -19,19 +19,19 @@ provider "aws" {
 }
 
 resource "aws_lb" "this" {
-  name               = "Application-LoadBalancer-${var.environment}-${var.project_name}"
+  name               = "ALB-${var.environment}-${var.project_name}"
   internal           = false
   load_balancer_type = "application"
   subnets            = var.subnets_ids
   security_groups    = var.security_groups_ids
 
   tags = {
-    Name = "Application-LoadBalancer-${var.environment}-${var.project_name}"
+    Name = "ALB-${var.environment}-${var.project_name}"
   }
 }
 
 resource "aws_lb_listener" "this" {
-  load_balancer_arn = aws_lb.aws_lb.arn
+  load_balancer_arn = aws_lb.this.arn
   port              = "80"
   protocol          = "HTTP"
 

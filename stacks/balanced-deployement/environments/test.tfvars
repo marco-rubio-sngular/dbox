@@ -1,4 +1,0 @@
-ENVIRONMENT   = "test"
-AWS_AMI_GREEN = "ami-0b988356a882455ca"
-AWS_AMI_BLUE  = "ami-0b988356a882455ca"
-INSTANCE_TYPE = "t2.micro"

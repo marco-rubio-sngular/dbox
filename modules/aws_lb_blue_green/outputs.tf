@@ -7,7 +7,7 @@ output "lb_id" {
 }
 
 output "aws_lb_listener_arn" {
-  value = aws_lb_listener.this_listener.arn
+  value = aws_lb_listener.this.arn
 }
 
 output "aws_lb_dns_name" {

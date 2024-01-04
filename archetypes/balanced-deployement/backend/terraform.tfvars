@@ -15,5 +15,5 @@ common_tags = {
 #:{'..'}>----------------------------------------------
 #:{'..'}> other variables and settings
 #:{'..'}>----------------------------------------------
-bucket_id      = "state-stack-balanced-deployment"
-dynamodb_table = "dbox-states-storage"
+bucket_id      = "dbox-stack-balanced-deployment.state"
+dynamodb_table = "sngular-states-database"

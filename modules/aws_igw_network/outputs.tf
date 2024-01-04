@@ -1,6 +1,6 @@
-output "vpcs" {
+output "vpc_id" {
   description = "VPC Outputs for network, ids"
-  value       = aws_vpc.this[*].id
+  value       = aws_vpc.this.id
 }
 
 output "vpc_cdir_blocks" {
@@ -10,12 +10,12 @@ output "vpc_cdir_blocks" {
 
 output "public_subnets" {
   description = "Public Subnets Outputs for network, cidr_block, and ids"
-  value       = { for subnet in aws_subnet.public_subnets : subnet.tags.Name => { "cidr_block" : subnet.cidr_block, "id" : subnet.id } }
+  value       = { for subnet in aws_subnet.public_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
 }
 
 output "private_subnets" {
   description = "Private Subnets Outputs for network, cidr_block, and ids"
-  value       = { for subnet in aws_subnet.private_subnets : subnet.tags.Name => { "cidr_block" : subnet.cidr_block, "id" : subnet.id } }
+  value       = { for subnet in aws_subnet.private_subnets : subnet.id => { "cidr_block" : subnet.cidr_block, "id" : subnet.id, "tags" : subnet.tags } }
 }
 
 output "igw_arn" {

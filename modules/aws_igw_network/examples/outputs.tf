@@ -3,9 +3,9 @@ output "vpc_cdir_blocks" {
   value       = module.aws_basic_network.vpc_cdir_blocks
 }
 
-output "vpcs" {
-  description = "VPC Outputs for network, cidr_block, and ids"
-  value       = module.aws_basic_network.vpcs
+output "vpc_id" {
+  description = "VPC ID Outputs for network"
+  value       = module.aws_basic_network.vpcs.id
 }
 
 output "public_subnets" {
