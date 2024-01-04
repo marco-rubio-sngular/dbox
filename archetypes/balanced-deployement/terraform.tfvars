@@ -16,11 +16,11 @@ private_subnet_cidr_blocks = ["172.31.10.0/24", "172.31.20.0/24", "172.31.30.0/2
 azs                        = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 image_id                   = "ami-0aef57767f5404a3c"
 instance_type              = "t2.micro"
-desired_size               = 1
-instance_max_size          = 1
+desired_size               = 2
+instance_max_size          = 4
 instance_min_size          = 1
 traffic_distribution       = "blue"
-traffic_distribution_map   = {
+traffic_distribution_map = {
   blue = {
     blue  = 100
     green = 0
@@ -43,5 +43,5 @@ traffic_distribution_map   = {
   }
 }
 
-user_data_filepath  = "userdata.sh"
+user_data_filepath = "userdata.sh"
 #:{.'.}> ---------------------------------------------------------------- 

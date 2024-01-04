@@ -59,3 +59,7 @@ variable "common_tags" {
 #:{'..'}>----------------------------------------------
 #:{'..'}> other variables and settings
 #:{'..'}>----------------------------------------------
+variable "vpc_id" {
+  description = "VPC Network ID"
+  type        = string
+}

@@ -61,13 +61,13 @@ test-apply:
 test-destroy:
 	terraform destroy -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars
 test-blue-90:
-	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var TRAFFIC_DISTRIBUTION=blue-90 
+	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var traffic_distribution=blue-90 
 test-split-50:
-	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var TRAFFIC_DISTRIBUTION=split
+	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var traffic_distribution=split
 test-green:
-	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var TRAFFIC_DISTRIBUTION=green
+	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var traffic_distribution=green
 test-blue:
-	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var TRAFFIC_DISTRIBUTION=blue
+	terraform apply -var-file=./environments/test.tfvars -var-file=./environments/test.backend.tfvars -var traffic_distribution=blue
 
 
 #> environment - pro
@@ -80,13 +80,13 @@ pro-apply:
 pro-destroy:
 	terraform destroy -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars
 pro-blue-90:
-	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var TRAFFIC_DISTRIBUTION=blue-90 
+	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var traffic_distribution=blue-90 
 pro-split-50:
-	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var TRAFFIC_DISTRIBUTION=split
+	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var traffic_distribution=split
 pro-green:
-	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var TRAFFIC_DISTRIBUTION=green
+	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var traffic_distribution=green
 pro-blue:
-	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var TRAFFIC_DISTRIBUTION=blue
+	terraform apply -var-file=./environments/pro.tfvars -var-file=./environments/pro.backend.tfvars -var traffic_distribution=blue
 
 
 
@@ -100,7 +100,7 @@ output:
 clean:
 	rm -fr .terraform* *.tfstate*
 dns:
-	terraform output output_module_lb_blue_green_aws_lb_dns_name
+	terraform output aws_lb_dns_name
 dinframap:
 	docker run --rm -v ${PWD}:/opt cycloid/inframap generate /opt/state.tfstate
 inframap:

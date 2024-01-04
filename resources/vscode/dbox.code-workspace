@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": "../.."
+    },
+    {
+      "path": "../../../balanced-deployment"
     }
   ],
   "settings": {}
