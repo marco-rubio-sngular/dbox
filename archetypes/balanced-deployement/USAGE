@@ -1,0 +1,123 @@
+Lo primero es dentro del directorio
+
+environments
+
+tenemos 4 ficheros que debemos configurar por entorno,
+esos ficheros no pueden cambiarse de nombre y son:
+
+pro.backend.tfvars
+bucket         = "dbox-stack-balanced-deployment.state"
+region         = "eu-west-1"
+profile        = "xxxxxxxxxxxx"
+key            = "sngular/stacks/balanced-deployment/terraform/states/pro"
+encrypt        = true
+dynamodb_table = "sngular-states-database"
+
+test.backend.tfvars
+bucket         = "dbox-stack-balanced-deployment.state"
+region         = "eu-west-1"
+profile        = "xxxxxxxxxxxx"
+key            = "sngular/stacks/balanced-deployment/terraform/states/test"
+encrypt        = true
+dynamodb_table = "sngular-states-database"
+
+Como vemos en estos 2 primeros ficheros que son para el backend solo cambia la key que
+es donde guardaremos el fichero de estado, en cada entorno tenemos uno y el resto de 
+datos son los mismos ya que comparten el mismo bucket...., distintas keys pero mismo
+bucket.
+
+Ahora los otro 2 siguientes:
+
+pro.tfvars
+environment   = "pro"
+aws_region    = "eu-west-1"
+aws_profile   = "xxxxxxxxxxxx"
+aws_ami_green = "ami-0b988356a882455ca"
+aws_ami_blue  = "ami-0b988356a882455ca"
+instance_type = "t3.micro"
+
+test.tfvars
+environment   = "test"
+aws_region    = "eu-west-1"
+aws_profile   = "xxxxxxxxxxxx"
+aws_ami_green = "ami-0b988356a882455ca"
+aws_ami_blue  = "ami-0b988356a882455ca"
+instance_type = "t3.micro"
+
+Aqui tambien ocurre lo mismo, vemos la primera variable que no esa no la debemos tocar
+y ya despues configuracion muy basica del cloud provider, en este caso AWS y cuatro datos
+mas para la configuracion basica del propio sistema, por lo general no debemos tocar mucho
+mas que las amis, profile y tipo de instancia.
+
+Ahora toca instalar el backend y empezar con el deployment, eso si, TODO DESDE MAKEFILE !!!
+
+paso 1. instalar el backend
+
+make test-backend-install
+
+o
+
+make pro-backend-install
+
+Esto crea la base de datos el bucket  y lo configura para que desde el primer init, nuestra
+infraestructura empieze con su estado guardado en un s3 bien asegurado.
+
+paso 2. deployment
+
+make test-init && make test-apply
+
+o
+
+make pro-init && make pro-apply
+
+Una vez completado todo el proceso podemos probarlo mediante:
+
+make traffic-test
+
+en el que iremos viendo la salida del curl sobre el dns publico
+del balander por lo que al principio veriamos blue o el que pusieramos
+en las configuraciones como traffic_distribution en el fichero de 
+
+terraform.tfvars
+
+Por defecto y para usar con make tenemos
+
+make test-split-50
+make test-blue
+make test-blue-90
+make test-green
+make test-green-90
+
+y lo mismo para el entorno pro
+
+make pro-split-50
+make pro-blue
+make pro-blue-90
+make pro-green
+make pro-green-90
+
+
+
+Si queremos destruir todo lo hariamos en este orden, primero
+la infraestructura desplegada y por ultimo el backend, es importante
+que asi sea por que de lo contrario solo podras destruir el backend.
+
+make test-destroy && make clean
+
+o 
+
+make pro-destroy && make clean
+
+y por ultimo
+
+make test-backend-uninstall && make backend-clean
+
+o
+
+make pro-backend-uninstall && make backend-clean
+
+
+{.".}>--------------------------------
+{.".}> Y eso es todo :) 
+{.".}> #beInfraMyFriend#mArKitos#
+{.".}>--------------------------------

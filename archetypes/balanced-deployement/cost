@@ -1,0 +1,35 @@
+ Name                                                                  Monthly Qty  Unit              Monthly Cost 
+                                                                                                                   
+ module.aws_asg_blue.aws_autoscaling_group.autoscaling_group_this                                                  
+ └─ module.aws_asg_blue.aws_launch_template.launch_template_this                                                   
+    ├─ Instance usage (Linux/UNIX, on-demand, t3.micro)                      1,460  hours                   $16.64 
+    ├─ EC2 detailed monitoring                                                  14  metrics                  $4.20 
+    └─ block_device_mapping[0]                                                                                     
+       └─ Storage (general purpose SSD, gp2)                                    40  GB                       $4.40 
+                                                                                                                   
+ module.aws_asg_green.aws_autoscaling_group.autoscaling_group_this                                                 
+ └─ module.aws_asg_green.aws_launch_template.launch_template_this                                                  
+    ├─ Instance usage (Linux/UNIX, on-demand, t3.micro)                      1,460  hours                   $16.64 
+    ├─ EC2 detailed monitoring                                                  14  metrics                  $4.20 
+    └─ block_device_mapping[0]                                                                                     
+       └─ Storage (general purpose SSD, gp2)                                    40  GB                       $4.40 
+                                                                                                                   
+ module.aws_igw_network.aws_nat_gateway.nat                                                                        
+ ├─ NAT gateway                                                                730  hours                   $35.04 
+ └─ Data processed                                                  Monthly cost depends on usage: $0.048 per GB   
+                                                                                                                   
+ module.aws_lb_blue_green.aws_lb.this                                                                              
+ ├─ Application load balancer                                                  730  hours                   $18.40 
+ └─ Load balancer capacity units                                    Monthly cost depends on usage: $5.84 per LCU   
+                                                                                                                   
+ OVERALL TOTAL                                                                                             $103.92 
+──────────────────────────────────
+26 cloud resources were detected:
+∙ 4 were estimated, all of which include usage-based costs, see https://infracost.io/usage-file
+∙ 22 were free, rerun with --show-skipped to see details
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Project                                            ┃ Monthly cost ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━┫
+┃ markitos-git/dbox/archetypes/balanced-deployement  ┃ $104         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━┛

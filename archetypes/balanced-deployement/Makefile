@@ -101,10 +101,8 @@ clean:
 	rm -fr .terraform* *.tfstate*
 dns:
 	terraform output aws_lb_dns_name
-dinframap:
-	docker run --rm -v ${PWD}:/opt cycloid/inframap generate /opt/state.tfstate
 inframap:
-	inframap --tfstate generate state.tfstate | dot -Tpng > graph.png
+	inframap --tfstate generate terraform.tfstate | dot -Tpng > graph.png
 traffic-test:
 	bash bin/traffic-test.sh
 doc:

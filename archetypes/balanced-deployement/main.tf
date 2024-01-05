@@ -1,3 +1,21 @@
+#{.".}:>--------------------------------------------------------
+#{.".}:> Archetype balanced deployement
+#{.".}:> CreatedBy mArKitos ~ SngularDevopsTeam
+#{.".}:>--------------------------------------------------------
+
+#{.".}:>--------------------------------------------------------
+#{.".}:> La configuracion del provider debera ser ademas de 
+#{.".}:> los ficheros de configuracion, el entorno debes exportar
+#{.".}:> 
+#{.".}:> export AWS_PROFILE="xxxxxxxxx"
+#{.".}:> export AWS_REGION="eu-west-1"
+#{.".}:> 
+#{.".}:> Este proyecto funciona todo con el profile y la region
+#{.".}:> no esta preparadao para usarlo con credenciales.
+#{.".}:> -------------------------------------------------------
+#{.".}:> Siempre version fija, no usamos constrain que puedan
+#{.".}:> dar al traste por versionado el proyecto
+#{.".}:>--------------------------------------------------------
 terraform {
   required_version = "1.6.2"
 
@@ -16,6 +34,8 @@ provider "aws" {
   region  = var.aws_region
   profile = var.aws_profile
 }
+#{.".}:>--------------------------------------------------------
+
 
 #{.".}:>--------------------------------------------------------
 #{.".}:> Este primer modulo nos va a proveer de los siguientes
@@ -121,6 +141,26 @@ module "aws_lb_blue_green" {
   traffic_distribution = var.traffic_distribution
 }
 
+
+#{.".}:>--------------------------------------------------------
+#{.".}:> A traves de este modulo vamos a crear 2 grupos de targets
+#{.".}:> para el balanceador, uno sera el green y el otro el blue,
+#{.".}:> cada uno con su respectivo user_data y como van por
+#{.".}:> separado cada uno puede tener su propia AMI sizes etc...
+#{.".}:>--------------------------------------------------------
+#{.".}:> INVENTARIO
+#{.".}:>--------------------------------------------------------
+#{.".}:> 1 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#{.".}:> 1 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#{.".}:> 1 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#{.".}:>--------------------------------------------------------
+#{.".}:> REQUERIMIENTOS
+#{.".}:>--------------------------------------------------------
+#{.".}:> 1 VPC ID
+#{.".}:> 3 SUBNETS IDS - de las publicas
+#{.".}:> 1 SECURITY GROUP - usamos el unico que tenemos como set
+#{.".}:> 2 TARGET GROUP - los 2 del LB - green y blue target
+#{.".}:>--------------------------------------------------------
 module "aws_asg_blue" {
   source              = "../../modules/aws_asg"
   prefix_name         = "BLUE"
@@ -140,7 +180,6 @@ module "aws_asg_blue" {
   subnets_ids         = module.aws_igw_network.public_subnets_ids
   target_group_arns   = toset([module.aws_lb_blue_green.aws_lb_target_group_blue_arn, module.aws_lb_blue_green.aws_lb_target_group_green_arn])
 }
-
 module "aws_asg_green" {
   source              = "../../modules/aws_asg"
   prefix_name         = "GREEN"
