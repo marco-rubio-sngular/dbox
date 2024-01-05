@@ -121,8 +121,9 @@ module "aws_lb_blue_green" {
   traffic_distribution = var.traffic_distribution
 }
 
-module "aws_asg" {
+module "aws_asg_blue" {
   source              = "../../modules/aws_asg"
+  prefix_name         = "BLUE"
   common_tags         = var.common_tags
   aws_profile         = var.aws_profile
   aws_region          = var.aws_region
@@ -132,7 +133,27 @@ module "aws_asg" {
   instance_max_size   = var.instance_max_size
   instance_min_size   = var.instance_min_size
   desired_size        = var.desired_size
-  user_data_filepath  = var.user_data_filepath
+  user_data_filepath  = var.user_data_filepath_blue
+  image_id            = var.image_id
+  instance_type       = var.instance_type
+  security_groups_ids = toset([module.aws_sg_web.aws_group_id])
+  subnets_ids         = module.aws_igw_network.public_subnets_ids
+  target_group_arns   = toset([module.aws_lb_blue_green.aws_lb_target_group_blue_arn, module.aws_lb_blue_green.aws_lb_target_group_green_arn])
+}
+
+module "aws_asg_green" {
+  source              = "../../modules/aws_asg"
+  prefix_name         = "GREEN"
+  common_tags         = var.common_tags
+  aws_profile         = var.aws_profile
+  aws_region          = var.aws_region
+  project_name        = var.project_name
+  environment         = var.environment
+  company_name        = var.company_name
+  instance_max_size   = var.instance_max_size
+  instance_min_size   = var.instance_min_size
+  desired_size        = var.desired_size
+  user_data_filepath  = var.user_data_filepath_green
   image_id            = var.image_id
   instance_type       = var.instance_type
   security_groups_ids = toset([module.aws_sg_web.aws_group_id])

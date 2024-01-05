@@ -59,6 +59,11 @@ variable "common_tags" {
 #:{'..'}>----------------------------------------------
 #:{'..'}> other variables and settings
 #:{'..'}>----------------------------------------------
+variable "prefix_name" {
+  type        = string
+  description = "Prefix to use at name"
+}
+
 variable "user_data_filepath" {
   type        = string
   description = "where is the user_data file path"

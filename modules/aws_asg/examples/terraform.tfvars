@@ -31,3 +31,4 @@ instance_min_size   = 0
 security_groups_ids = ["value"]
 subnets_ids         = ["value"]
 target_group_arns   = ["value"]
+prefix_name         = "dbox"

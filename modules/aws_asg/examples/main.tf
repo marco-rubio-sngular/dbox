@@ -15,4 +15,5 @@ module "aws_asg" {
   security_groups_ids = var.security_groups_ids
   subnets_ids         = var.subnets_ids
   target_group_arns   = var.target_group_arns
+  prefix_name         = var.prefix_name
 }

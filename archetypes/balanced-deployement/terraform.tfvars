@@ -43,5 +43,6 @@ traffic_distribution_map = {
   }
 }
 
-user_data_filepath = "userdata.sh"
+user_data_filepath_green = "userdata_green.sh"
+user_data_filepath_blue  = "userdata_blue.sh"
 #:{.'.}> ---------------------------------------------------------------- 

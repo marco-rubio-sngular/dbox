@@ -19,8 +19,8 @@ provider "aws" {
 }
 
 
-resource "aws_launch_template" "this" {
-  name                   = "Launch-Template-${var.environment}-${var.project_name}"
+resource "aws_launch_template" "launch_template_this" {
+  name                   = "LTPL_${var.prefix_name}-${var.environment}_${var.project_name}"
   image_id               = var.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = var.security_groups_ids
@@ -44,18 +44,18 @@ resource "aws_launch_template" "this" {
   }
 
   tags = {
-    Name = "Launch-Template-${var.environment}_${var.project_name}"
+    Name = "LTPL_${var.prefix_name}-${var.environment}_${var.project_name}"
   }
 
   tag_specifications {
     resource_type = "instance"
     tags = merge(var.common_tags, {
-      Name = "Launch-Template-${var.environment}_${var.project_name}"
+      Name = "LTPL_${var.prefix_name}-${var.environment}_${var.project_name}"
     })
   }
 }
-resource "aws_autoscaling_group" "this" {
-  name                      = "ASG-${var.environment}_${var.project_name}"
+resource "aws_autoscaling_group" "autoscaling_group_this" {
+  name                      = "ASG-${var.prefix_name}_${var.environment}_${var.project_name}"
   max_size                  = var.instance_max_size
   min_size                  = var.instance_min_size
   desired_capacity          = var.desired_size
@@ -65,7 +65,7 @@ resource "aws_autoscaling_group" "this" {
   health_check_grace_period = 300
 
   launch_template {
-    id      = aws_launch_template.this.id
+    id      = aws_launch_template.launch_template_this.id
     version = "$Latest"
   }
 }

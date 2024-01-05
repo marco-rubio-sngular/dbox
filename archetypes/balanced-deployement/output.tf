@@ -47,20 +47,35 @@ output "aws_group_id" {
   value = module.aws_sg_web.aws_group_id
 }
 #:{.".}> ------------------------------------------------------------------------------
-output "autoscaling_group_arn" {
-  value = module.aws_asg.autoscaling_group_arn
+output "blue_autoscaling_group_arn" {
+  value = module.aws_asg_blue.autoscaling_group_arn
 }
 
-output "autoscaling_group_id" {
-  value = module.aws_asg.autoscaling_group_id
+output "blue_autoscaling_group_id" {
+  value = module.aws_asg_blue.autoscaling_group_id
 }
 
-output "launch_template_arn" {
-  value = module.aws_asg.launch_template_arn
+output "blue_launch_template_arn" {
+  value = module.aws_asg_blue.launch_template_arn
 }
 
-output "launch_template_id" {
-  value = module.aws_asg.launch_template_id
+output "blue_launch_template_id" {
+  value = module.aws_asg_blue.launch_template_id
+}
+output "green_autoscaling_group_arn" {
+  value = module.aws_asg_green.autoscaling_group_arn
+}
+
+output "green_autoscaling_group_id" {
+  value = module.aws_asg_green.autoscaling_group_id
+}
+
+output "green_launch_template_arn" {
+  value = module.aws_asg_green.launch_template_arn
+}
+
+output "green_launch_template_id" {
+  value = module.aws_asg_green.launch_template_id
 }
 #:{.".}> ------------------------------------------------------------------------------
 output "lb_arn" {

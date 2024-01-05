@@ -161,9 +161,14 @@ variable "profile" {
   type        = string
 }
 
-variable "user_data_filepath" {
+variable "user_data_filepath_green" {
   type        = string
-  description = "where is the user_data file path"
+  description = "GREEN - Where is the user_data file path"
+}
+
+variable "user_data_filepath_blue" {
+  type        = string
+  description = "BLUE - Where is the user_data file path"
 }
 
 variable "image_id" {
