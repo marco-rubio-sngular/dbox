@@ -1,1 +1,4 @@
 - test del vo password, reglas para password (numero de carac, number si o no, special char si o no)
+- cuando generamos la documentacion ver como poner
+un texto que diga que es el modulo que hace etc
+- pasarlo todo a .env

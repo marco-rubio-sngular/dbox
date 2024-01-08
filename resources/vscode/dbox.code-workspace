@@ -4,7 +4,10 @@
       "path": "../.."
     },
     {
-      "path": "../../../balanced-deployment"
+      "path": "../../../../../../../../private/tmp/terraform-msc-db-2004"
+    },
+    {
+      "path": "../../../../../personal/courses/laboratory.ansible"
     }
   ],
   "settings": {}
